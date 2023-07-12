@@ -141,15 +141,17 @@ const Home = () => {
 
       </div>
 
-    
+          <TimelineSection></TimelineSection>
+
+          <LearningLanguageSection></LearningLanguageSection>
 
 
     </div>
 
-    <TimelineSection></TimelineSection>
+    
 
-    <LearningLanguageSection></LearningLanguageSection>
 
+   
 
 
     </div>
