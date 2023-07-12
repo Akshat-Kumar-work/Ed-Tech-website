@@ -5,6 +5,8 @@ import HighlighText  from "../components/core/HomePage/HighlightText"
 import CTAButton from '../components/core/HomePage/Button';
 import Banner from "../assets/Images/banner.mp4"
 import CodeBlocks from '../components/core/HomePage/CodeBlocks';
+import Footer from '../components/common/footer';
+
 const Home = () => {
   return (
     <div>
@@ -43,7 +45,8 @@ const Home = () => {
                 </video>
               </div>
 
-              {/*code section 1*/}
+              <div className='  w-11/12'>
+                {/*code section 1*/}
               <div>
                 <CodeBlocks position={"lg:flex-row"}
                  heading={<div className='text-4xl font-semibold'>Unlock Your <HighlighText text={"coding potential"}></HighlighText>with our online courses</div>} 
@@ -51,7 +54,7 @@ const Home = () => {
                  ctabtn1={
                  {
                   active:true,
-                  btnText:"try it yourself",
+                  btnText:"Try it Yourself",
                   linkto:"/signup",
                   
                  }
@@ -92,13 +95,20 @@ const Home = () => {
                  codeColor={" text-blue-300"}
                  ></CodeBlocks>
               </div>
+
+              </div>
               
       </div>
     {/*section 2*/}
+    <div  className=' bg-white'>
+
+    </div>
 
     {/*section 3*/}
     
-    {/*footer*/}
+    {/* footer */}
+    <Footer></Footer>
+  
 
     </div>
   )
