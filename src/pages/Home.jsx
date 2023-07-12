@@ -44,9 +44,9 @@ const Home = () => {
               </div>
 
               {/*code section 1*/}
-              <div className='text-2xl font-semibold'>
+              <div>
                 <CodeBlocks position={"lg:flex-row"}
-                 heading={<div>Unlock Your <HighlighText text={"coding potential"}></HighlighText>with our online courses</div>} 
+                 heading={<div className='text-4xl font-semibold'>Unlock Your <HighlighText text={"coding potential"}></HighlighText>with our online courses</div>} 
                  subheading={"Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."}
                  ctabtn1={
                  {
@@ -58,14 +58,41 @@ const Home = () => {
                  }
                  ctabtn2={
                  {
-                  btnText:"learn more",
+                  btnText:"Learn more",
                   linkto:"/signup",
                   active:false,
                  }
                  }
-                 
+                 CodeBlock={`<<!DOCTYPE html>\n<html>\nhead><title>Example</title>\n<linkrel="stylesheet"href="styles.css">\n/head>\nbody>\nh1><ahref="/">Header</a>\n/h1>\nnav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a>\n/nav>`}
+                 codeColor={"text-yellow-25"}
                  ></CodeBlocks>
               </div>
+
+               {/*code section 2*/}
+               <div >
+                <CodeBlocks position={"lg:flex-row-reverse"}
+                 heading={<div className='text-4xl font-semibold'> Start <HighlighText text={"coding in seconds"}></HighlighText></div>} 
+                 subheading={"Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson."}
+                 ctabtn1={
+                 {
+                  active:true,
+                  btnText:"Continue Lesson",
+                  linkto:"/signup",
+                  
+                 }
+                 }
+                 ctabtn2={
+                 {
+                  btnText:"Learn more",
+                  linkto:"/signup",
+                  active:false,
+                 }
+                 }
+                 CodeBlock={`<<!DOCTYPE html>\n<html>\nhead><title>Example</title>\n<linkrel="stylesheet"href="styles.css">\n/head>\nbody>\nh1><ahref="/">Header</a>\n/h1>\nnav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a>\n/nav>`}
+                 codeColor={" text-blue-300"}
+                 ></CodeBlocks>
+              </div>
+              
       </div>
     {/*section 2*/}
 
