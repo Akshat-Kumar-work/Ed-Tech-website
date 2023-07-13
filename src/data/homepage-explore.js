@@ -1,4 +1,7 @@
 export const HomePageExplore = [
+
+
+    //zero index
     {
         tag: 'Free',
         courses : [
@@ -22,6 +25,9 @@ export const HomePageExplore = [
             },
         ]
     },
+
+
+    //1st index
     {
         tag: 'New to coding',
         courses : [
@@ -45,6 +51,8 @@ export const HomePageExplore = [
             },
         ]
     },
+
+    //2nd index
     {
         tag: 'Most popular',
         courses : [
@@ -68,6 +76,10 @@ export const HomePageExplore = [
             },
         ]
     },
+
+
+
+    //3rd index
     {
         tag: 'Skills paths',
         courses : [
@@ -91,6 +103,9 @@ export const HomePageExplore = [
             },
         ]
     },
+
+
+    //4th index
     {
         tag: 'Career paths',
         courses : [

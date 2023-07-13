@@ -9,6 +9,7 @@ import Footer from '../components/common/footer';
 import LearningLanguageSection from '../components/core/HomePage/LearningLanguageSection';
 import TimelineSection from '../components/core/HomePage/TimelineSection';
 import InstructorSection from '../components/core/HomePage/InstructorSection'
+import ExploreMore from '../components/core/HomePage/ExploreMore';
 
 const Home = () => {
   return (
@@ -99,6 +100,8 @@ const Home = () => {
                  ></CodeBlocks>
               </div>
 
+              <ExploreMore></ExploreMore>
+
               </div>
               
       </div>
@@ -111,7 +114,7 @@ const Home = () => {
 
       <div className=' w-11/12 max-w-maxContent flex items-center gap-5 mx-auto flex-col '>
         <div className=' h-[150px]'></div>
-        <div className=' flex text-white gap-7 '>
+        <div className=' flex text-white gap-7 mt-10 '>
 
                  <CTAButton active={true} linkto={"/signup"}>
                  <div className=' flex gap-3 items-center'>
