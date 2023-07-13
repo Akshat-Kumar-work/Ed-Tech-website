@@ -8,6 +8,7 @@ import CodeBlocks from '../components/core/HomePage/CodeBlocks';
 import Footer from '../components/common/footer';
 import LearningLanguageSection from '../components/core/HomePage/LearningLanguageSection';
 import TimelineSection from '../components/core/HomePage/TimelineSection';
+import InstructorSection from '../components/core/HomePage/InstructorSection'
 
 const Home = () => {
   return (
@@ -148,15 +149,18 @@ const Home = () => {
 
     </div>
 
-    
-
-
-   
-
-
     </div>
 
     {/*section 3*/}
+    <div className=' w-11/12 mx-auto max-w-maxContent flex flex-col items-center justify-between gap-8 bg-richblack-900 text-white '>
+
+    <InstructorSection></InstructorSection>
+
+    <h2 className=' text-center text-4xl font-semibold mt-10 '>Review from Other Learners</h2>
+
+    {/* <review slider></review> */}
+
+    </div>
     
     {/* footer */}
     <Footer></Footer>
