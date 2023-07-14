@@ -20,7 +20,7 @@ const Navbar = () => {
             </Link>
 
             <nav>
-              <ul className=' flex gapx-6 text-richblack-25'>
+              <ul className=' flex gap-x-6 text-richblack-25'>
                   {NavbarLinks.map( (link , index)=>{
                     return(
                       <li key={index} >
@@ -40,6 +40,10 @@ const Navbar = () => {
             </nav>
 
             {/* login signup dashboard */}
+
+            <div className=' flex gap-x-4 items-center'>
+
+            </div>
 
     </div>
 
