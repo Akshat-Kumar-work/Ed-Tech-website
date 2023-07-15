@@ -92,7 +92,7 @@ const footer = () => {
                         <div className=' flex flex-col gap-2 mt-2'>
                               { Plans.map( (currEle , index)=>{
                                 return(
-                                  <div className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200 mt-2">
+                                  <div key={index} className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200 mt-2">
                                   <Link to={currEle.split(" ").join("-").toLowerCase()}>{currEle}</Link>
                                   </div>
                                 )
@@ -103,7 +103,7 @@ const footer = () => {
                         <div className='flex flex-col gap-2 mt-2'>
                           { Community.map( (currEle , index)=>{
                             return(
-                              <div className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200 mt-2">
+                              <div key={index} className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200 mt-2">
                               <Link to={currEle.split(" ").join("-").toLowerCase()}>{currEle}</Link>
                               </div>
                             )
