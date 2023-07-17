@@ -11,11 +11,12 @@ const authSlice = createSlice({
     initialState:initialState,
     reducers:{
         setToken:{
-            setSignupData(state, value) {
-                state.signupData = value.payload;
+            setSignupData(state, action) {
+                state.signupData = action.payload;
               },
-              setLoading(state, value) {
-                state.loading = value.payload;
+              setLoading(state, action) {
+                //current state m jo loading property hai usme jo current value update hui hai vo daldo
+                state.loading = action.payload;
               },
             setToken(state,value){
                 state.token = value.payload

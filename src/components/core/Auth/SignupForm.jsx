@@ -9,13 +9,20 @@ import { setSignupData } from "../../../slices/authSlice"
 import { ACCOUNT_TYPE } from "../../../utils/constants"
 import Tab from "../../common/Tab"
 
+
 function SignupForm() {
+
+
+
+  //hook to navigate 
   const navigate = useNavigate()
+  //hook to dispatch action to update the redux state
   const dispatch = useDispatch()
 
-  // student or instructor
+  // creating acccountType state
   const [accountType, setAccountType] = useState(ACCOUNT_TYPE.STUDENT)
 
+  //form data state
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -24,12 +31,15 @@ function SignupForm() {
     confirmPassword: "",
   })
 
+  //show password state
   const [showPassword, setShowPassword] = useState(false)
+  //confirm password state
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
+  //fetching the variables from the formData by destructuring 
   const { firstName, lastName, email, password, confirmPassword } = formData
 
-  // Handle input fields, when some value changes
+  // Handle input fields, when some value changes, jab koi value change hogi input field m toh previous data or current value update krdena name k base p
   const handleOnChange = (e) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -41,10 +51,13 @@ function SignupForm() {
   const handleOnSubmit = (e) => {
     e.preventDefault()
 
+    //agar password or confirm password match nahi hota toh return kro error k sath
     if (password !== confirmPassword) {
       toast.error("Passwords Do Not Match")
       return
     }
+
+    //creating new object called signupData having formData and accountType
     const signupData = {
       ...formData,
       accountType,
@@ -52,11 +65,13 @@ function SignupForm() {
 
     // Setting signup data to state
     // To be used after otp verification
+    //dispatch hook se action ko call kia jo signupData ko update krta hai
     dispatch(setSignupData(signupData))
     // Send OTP to user for verification
+    //send otp operation ko call kar rhe hai email aur navigate  hook pass krke
     dispatch(sendOtp(formData.email, navigate))
 
-    // Reset
+    // Reset krdo pure form ko ek bar jab submit hojae toh empty honi chaie sari input fields
     setFormData({
       firstName: "",
       lastName: "",
@@ -64,8 +79,10 @@ function SignupForm() {
       password: "",
       confirmPassword: "",
     })
+    //default account type state ki value student hogi
     setAccountType(ACCOUNT_TYPE.STUDENT)
   }
+
 
   // data to pass to Tab component
   const tabData = [

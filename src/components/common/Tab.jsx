@@ -1,3 +1,5 @@
+//y vo component hai jo select karta hai signup krty hue instructor ya fir student
+
 export default function Tab({ tabData, field, setField }) {
     return (
       <div

@@ -2,15 +2,17 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState={
-   TotalItems : localStorage.getItem("totalItems") ? JSON.parse(localStorage.getItem("totalItems")):0
+   TotalItems : localStorage.getItem("totalItems") ? JSON.parse(localStorage.getItem("totalItems")):0,
+   cart: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [],
+   total: localStorage.getItem("total") ? JSON.parse(localStorage.getItem("total")) : 0
 };
 
 const cartSlice = createSlice({
     name:'cart',
     initialState:initialState,
     reducers:{
-        setTotalItems(state,value){
-            state.cart = value.payload
+        setTotalItems(state,action){
+            state.cart = action.payload
         },
     }
 });
