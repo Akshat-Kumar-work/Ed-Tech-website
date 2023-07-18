@@ -18,7 +18,7 @@ function App() {
             <Route path='/' element={<Home/>}></Route>
             <Route path='/login' element={<OpenRoute> <Login /> </OpenRoute>}></Route>
             <Route path='/signup' element={<OpenRoute> <Signup /></OpenRoute> }></Route>
-            <Route path='/forgot-password'element={<OpenRoute> <ResetPassword/> </OpenRoute> }></Route>
+            <Route path='/reset-password'element={<OpenRoute> <ResetPassword/> </OpenRoute> }></Route>
             <Route path='/update-password/:id'element={<OpenRoute> <UpdatePassword/> </OpenRoute> }></Route>
 
           </Routes>
