@@ -10,8 +10,8 @@ const authSlice = createSlice({
     name:"auth",
     initialState:initialState,
     reducers:{
-        setToken:{
-            setSignupData(state, action) {
+    
+            setSignupData:(state, action) =>{
                 state.signupData = action.payload;
               },
               setLoading(state, action) {
@@ -21,7 +21,7 @@ const authSlice = createSlice({
             setToken(state,value){
                 state.token = value.payload
             }
-        }
+        
     }
 })
 
