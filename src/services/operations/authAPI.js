@@ -125,6 +125,8 @@ export function login(email , password , navigate){
 
             //console kro jo response aya hai request krke
             console.log("LOGIN API RESPONSE......",response)
+           
+
 
             //agar response success nai aya toh message console kro
             if(!response.data.success){
@@ -138,7 +140,7 @@ export function login(email , password , navigate){
             dispatch(setToken(response.data.token))
 
             //user image naam k variable m jo response k andar agar image hai toh daldo vrna dicebear sy ek default image daldo
-            const userImage = response.data?.user?.image  ? response.data.user.image : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}`
+            const userImage = response.data?.user?.image  ? response.data.user.image : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.User.firstName} ${response.data.User.lastName}`
 
             //user state ko update krdo user ka data aur image dalkar
             dispatch(setUser({ ...response.data.user, image: userImage }))
@@ -148,8 +150,6 @@ export function login(email , password , navigate){
 
             //en sbke baad my profile vale page par chle jao
             navigate("/dashboard/my-profile")
-
-
         }
         catch(error){
             console.log("LOGIN API ERROR............", error)
@@ -160,6 +160,7 @@ export function login(email , password , navigate){
             toast.dismiss(toastId)
     }
 }
+
 
 //function to logout 
 export function logout(navigate) {

@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 import {AiOutlineShoppingCart} from 'react-icons/ai'
 import ProfileDropDown from '../core/Auth/ProfileDropDown'
 import { apiConnector } from '../../services/apiConnector'
-import { categories } from '../../services/api'
+import { catalogData, categories } from '../../services/api'
 import { useState } from 'react'
 import {IoIosArrowDropdownCircle} from 'react-icons/io';
 
@@ -16,6 +16,8 @@ const Navbar = () => {
 
   // //fetching state
   const {token} = useSelector( (state)=>state.auth);
+
+
   const {user} = useSelector( (state)=>state.profile);
   const {totalItems} = useSelector( (state)=>state.cart);
 
@@ -140,6 +142,8 @@ const Navbar = () => {
               </Link>
             )
            }
+
+           
 
            {
             token !== null &&<ProfileDropDown/>
