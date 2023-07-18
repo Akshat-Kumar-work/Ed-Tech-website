@@ -134,7 +134,7 @@ export function login(email , password , navigate){
             //toast show kro login hogya hai
             toast.success("Login Successful")
 
-            //token state m token mila hai api k response sy usko dal kr update kro
+            //token state m jo token mila hai api k response sy usko dal kr update kro
             dispatch(setToken(response.data.token))
 
             //user image naam k variable m jo response k andar agar image hai toh daldo vrna dicebear sy ek default image daldo
