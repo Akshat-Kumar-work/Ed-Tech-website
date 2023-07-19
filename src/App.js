@@ -8,6 +8,7 @@ import Signup from './pages/Signup';
 import ResetPassword from './pages/ResetPassword';
 import UpdatePassword from './pages/UpdatePassword';
 import VerifyEmail from './pages/VerifyEmail';
+import About from './pages/About';
 
 
 
@@ -23,6 +24,8 @@ function App() {
             <Route path='/reset-password'element={<OpenRoute> <ResetPassword/> </OpenRoute> }></Route>
             <Route path='/update-password/:id'element={<OpenRoute> <UpdatePassword/> </OpenRoute> }></Route>
             <Route path='/verify-email'element={ <OpenRoute> <VerifyEmail/></OpenRoute>  }></Route>
+            <Route path='/about'element={ <OpenRoute> <About/></OpenRoute>  }></Route>
+
     
 
 

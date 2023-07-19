@@ -4,14 +4,12 @@ import { Navigate } from "react-router-dom"
 
 function OpenRoute({ children }) {
   const { token } = useSelector((state) => state.auth)
-
-  //agar state m token present nahi hai toh mtlb login nahi hai , return hojao login or signup page par par jo children hai uske
+  //agar token state m token nai hai toh render krwao children like login page and signup page
   if (token === null) {
     
     return children
   } 
-  //agar token state m token present hai , jo login api call krke response se mila hai usko dala hoga token state  m toh mtlb call successfull hogyi and user logged in hai phle se 
-  //toh login or signup page mt dikhao seedha dashborad vala my profile ka page dikhao
+//agar token available hai toh dashboard/my-profile vale route par jao
   else {
     return <Navigate to="/dashboard/my-profile" />
   }

@@ -4,6 +4,7 @@ import {apiConnector} from "../apiConnector";
 import { endpoints } from "../api";
 import { setLoading, setToken } from "../../slices/authSlice";
 import { setUser } from "../../slices/profileSlice";
+import {resetCart} from "../../slices/cartSlice"
 
 
 
@@ -140,13 +141,15 @@ export function login(email , password , navigate){
             dispatch(setToken(response.data.token))
 
             //user image naam k variable m jo response k andar agar image hai toh daldo vrna dicebear sy ek default image daldo
-            const userImage = response.data?.user?.image  ? response.data.user.image : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.User.firstName} ${response.data.User.lastName}`
+            const userImage = response.data?.User?.img  ? response.data.User.img : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.User.firstName} ${response.data.User.lastName}`
 
             //user state ko update krdo user ka data aur image dalkar
-            dispatch(setUser({ ...response.data.user, image: userImage }))
+            dispatch(setUser({ ...response.data.User, image: userImage }))
+          
 
             //local storage m token ko store krdo setItem func se , phle token ko json string ki form m convert krdo kyu ki local storage m sirf string store hoti hai
             localStorage.setItem("token", JSON.stringify(response.data.token))
+            localStorage.setItem("user",JSON.stringify(response.data.User))
 
             //en sbke baad my profile vale page par chle jao
             navigate("/dashboard/my-profile")
@@ -170,7 +173,7 @@ export function logout(navigate) {
       //user state ko bhi null mark krdo
       dispatch(setUser(null))
       //cart ko bhi reset krdo
-      //dispatch(resetCart())
+      dispatch(resetCart())
       //local storage se token remove krdo
       localStorage.removeItem("token")
       //local storage se user ki value remove krdo

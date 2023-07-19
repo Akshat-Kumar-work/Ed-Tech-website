@@ -18,6 +18,7 @@ const Navbar = () => {
   const {token} = useSelector( (state)=>state.auth);
 
 
+
   const {user} = useSelector( (state)=>state.profile);
   const {totalItems} = useSelector( (state)=>state.cart);
 
