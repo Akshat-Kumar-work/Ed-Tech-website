@@ -39,7 +39,7 @@ const TimelineSection = () => {
                         <div key={index} className=' flex flex-row gap-6'>
 
                            <div className='w-[50px] h-[50px] bg-white flex items-center'>
-                            <img src={element.Logo}></img>
+                            <img src={element.Logo} alt='logoImg'></img>
                            </div>
 
                            <div >
@@ -57,7 +57,7 @@ const TimelineSection = () => {
         {/* right box */}
         <div className='relative shadow-blue-200  '>
 
-        <img src={timelineImage} className=' shadow-white object-cover rounded-lg h-fit'></img>
+        <img src={timelineImage} className=' shadow-white object-cover rounded-lg h-fit' alt='timelineImg'></img>
         
         <div className='absolute bg-caribbeangreen-700 flex text-white uppercase py-7 left-[50%] translate-x-[-50%] translate-y-[-50%]'>
 

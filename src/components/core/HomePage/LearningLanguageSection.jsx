@@ -15,9 +15,9 @@ const LearningLanguageSection = () => {
 
           <div className=' flex items-center justify-center mt-5'>
 
-            <img src={Know_progress} className='object-contain translate-x-[125px] z-0 translate-y-[-30px]'></img>
-            <img src={compare_others} className='object-contain z-10'></img>
-            <img src={plan_lessons} className='object-contain translate-x-[-150px] z-30'></img>
+            <img src={Know_progress} className='object-contain translate-x-[125px] z-0 translate-y-[-30px]' alt='knowProgressImg'></img>
+            <img src={compare_others} className='object-contain z-10' alt='compareImg'></img>
+            <img src={plan_lessons} className='object-contain translate-x-[-150px] z-30' alt='PlanlessonImg'></img>
 
           </div>
           

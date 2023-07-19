@@ -9,7 +9,7 @@ const About = () => {
 
             <div>
 
-                <header>
+                <header className=' text-white'>
                     Driving Innovation in Online Education for a  <HighlightText text={"Bright Future"}/>
                 </header>
 

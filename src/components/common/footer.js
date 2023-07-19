@@ -41,7 +41,7 @@ const footer = () => {
                     {/* first column */}
                    <div className="w-[30%] flex flex-col gap-3 lg:w-[30%] mb-7 lg:pl-0">
 
-                    <img src={Logoimg} className='object-contain' ></img>
+                    <img src={Logoimg} className='object-contain' alt='logo'></img>
                     <h1 className=' text-richblack-50 font-semibold text-[16px]'>Company</h1>
                     <div className=' flex flex-col'>
                       {["About", "Careers", "Affiliates"].map( (CurrEle,index)=>{
