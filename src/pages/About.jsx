@@ -8,6 +8,7 @@ import FoundingStory from '../assets/Images/FoundingStory.png'
 import Stats from '../components/core/AboutPage/Stats'
 import LearningGrid from '../components/core/AboutPage/LearningGrid'
 import Footer from '../components/common/footer'
+import ContactForm from '../components/core/AboutPage/ContactForm'
 
 const About = () => {
   return (
@@ -112,8 +113,9 @@ const About = () => {
         <Stats/>
 
         {/* section 5 */}
-          <section className=' mx-auto flex item-center justify-center gap '>
+          <section className=' mx-auto flex flex-col  item-center justify-center gap-5 mb-[140px]'>
           <LearningGrid/>
+          <ContactForm/>
               </section>
 
           </div>
