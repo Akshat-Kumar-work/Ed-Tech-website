@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {useForm} from "react-hook-form"
 import {apiConnector} from "../../services/apiConnector"
 import {contactusEndpoint} from "../../services/api"
+import countryCode from "../../data/countrycode.json"
 
 
 const ContactUsForm = () => {
@@ -19,7 +20,7 @@ const ContactUsForm = () => {
                 email:"",
                 firstname:"",
                 message:"",
-                phoneNo:""
+                phonenumber:""
             },[isSubmitSuccessful,reset])
         }
     })
@@ -43,6 +44,7 @@ const submitContactForm = async(data)=>{
     <form onSubmit={handleSubmit(submitContactForm)} >
 
             <div className=' flex flex-col gap-1'>
+
             <div className='flex gap-5'>
         {/* firstname */}
         <div className='flex flex-col'>
@@ -68,6 +70,50 @@ const submitContactForm = async(data)=>{
             {
                 errors.email && (<span>Please enter your email address </span>)
             }
+        </div>
+
+        {/* phone number */}
+        <div className=' flex flex-col gap-2 '>
+
+        <label htmlFor='phonenumber'>Phone Number</label>
+        
+        <div className=' flex flex-row gap-7'>
+
+            {/* drop down */}
+        <div className=' flex w-[15%] gap-5 flex-col'>
+            <select name='dropdown' id='dropdown' {...register("countrycode",{required:true})} className='text-black'>
+                {
+                    countryCode.map( (element , index)=>{
+                        return(
+                            <option key={index} value={element.code} className='text-black'>
+                                {element.code}-{element.country}
+                            </option>
+                        )
+                    })
+                }
+            </select>
+        </div>
+            
+            {/* phonenumber input */}
+        <div className='w-[80%]'>
+            <input type='number' name='phonenumber' id='phonenumber' placeholder='123456789' className='text-black' {...register("phonenumber",
+               {
+                required:{value:true , message:"please enter phone number"},
+                maxLength:{value:10 , message:"invalid phone number"},
+                 minLength:{value:8 , message:"invalid phone number"}
+                }
+                )
+                }  />
+        </div>
+
+            
+        </div>
+        {
+            errors.phonenumber && (
+                <span>{errors.phonenumber.message}</span>
+            )
+        }
+
         </div>
 
         {/* message box */}
