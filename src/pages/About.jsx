@@ -118,6 +118,7 @@ const About = () => {
 
           </div>
 
+                {/* footer section */}
                 <Footer/>
 
     </div>
