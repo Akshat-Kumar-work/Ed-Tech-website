@@ -21,9 +21,9 @@ const ContactUsForm = () => {
                 firstname:"",
                 message:"",
                 phonenumber:""
-            },[isSubmitSuccessful,reset])
+            })
         }
-    })
+    },[isSubmitSuccessful,reset])
 
 const submitContactForm = async(data)=>{
     console.log(data)
