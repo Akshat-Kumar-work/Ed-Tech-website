@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import  { sidebarLinks } from "../../../data/dashboard-links"
 import {logout} from "../../../services/operations/authAPI"
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import SidebarLinks from './SidebarLinks'
+import { useNavigate } from 'react-router-dom'
+import { VscSignOut } from 'react-icons/vsc'
 
 const Sidebar = () => {
     const {user , loading:profileLoading} = useSelector( (state)=>state.profile);
     const {loading:authLoading} = useSelector( (state)=>state.auth);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const[ConfirmationModal , setConfirmationModal] = useState(null)
 
     if(profileLoading || authLoading){
         return (
@@ -15,7 +20,7 @@ const Sidebar = () => {
     }
   return (
 
-    <div >
+    <div  >
 
     <div className='flex flex-col min-w-[222px] border-r-[1px] border-r-richblack-700 h-[calc(100vh-3.5rem)] bg-richblack-800 py-10'>
 
@@ -35,14 +40,32 @@ const Sidebar = () => {
         <div className='mx-auto mt-6 mb-6 h-[1px] w-10/12 bg-richblack-500'></div>
 
         <div className='flex flex-col'>
+        
+
             <SidebarLinks link={ {name:"Settings",path:"dashboard/settings"}} iconName="VscSettingsGear"></SidebarLinks>
 
-           
+            {/* signout button */}
+           <button onClick={ ()=>setConfirmationModal({
+            text1:"Are you Sure ?",
+                text2:"You will be Logged out of your Account",
+                btn1Text:"Logout",
+                btn2Text:"cancel",
+                btn1Handler:()=>dispatchEvent(logout(navigate)),
+                btn2Handler:()=>setConfirmationModal(null)
+           })} className='text-sm font-medium text-richblack-300 '>
+
+           <div className='flex items-center gap-x-2'>
+            <VscSignOut className='text-lg'/>
+            <span>Logout</span>
+           </div>
+
+           </button>
+
         </div>
 
 
     </div>
-
+           {ConfirmationModal && <ConfirmationModal modalData={ConfirmationModal}/>}
     </div>
 
   )
