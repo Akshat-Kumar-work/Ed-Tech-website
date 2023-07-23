@@ -1,133 +1,189 @@
-import React, { useEffect, useState } from 'react'
-import {useForm} from "react-hook-form"
-import {apiConnector} from "../../services/apiConnector"
-import {contactusEndpoint} from "../../services/api"
-import countryCode from "../../data/countrycode.json"
+import React, { useEffect, useState } from "react"
+import { useForm } from "react-hook-form"
 
+import CountryCode from "../../data/countrycode.json"
+import { apiConnector } from "../../services/apiConnector"
+import { contactusEndpoint } from "../../services/api"
 
 const ContactUsForm = () => {
-    const [loading,setLoading] = useState(false);
+  const [loading, setLoading] = useState(false)
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitSuccessful },
+  } = useForm()
 
-    const{
-        register,
-        handleSubmit,
-        reset, formState:{errors,isSubmitSuccessful}
-    } = useForm();
-
-    useEffect( ()=>{
-        if(isSubmitSuccessful){
-            reset({
-                email:"",
-                firstname:"",
-                message:"",
-                phonenumber:""
-            })
-        }
-    },[isSubmitSuccessful,reset])
-
-const submitContactForm = async(data)=>{
-    console.log(data)
-    try{
-        setLoading(true);
-       // const response = await apiConnector("POST",contactusEndpoint.CONTACT_US_API,data);
-        const response = {status:"ok"}
-        console.log(response)
-        setLoading(false);
+  const submitContactForm = async (data) => {
+    // console.log("Form Data - ", data)
+    try {
+      setLoading(true)
+      const res = await apiConnector(
+        "POST",
+       contactusEndpoint.CONTACT_US_API,
+        data
+      )
+      // console.log("Email Res - ", res)
+      setLoading(false)
+    } catch (error) {
+      console.log("ERROR MESSAGE - ", error.message)
+      setLoading(false)
     }
-    catch(error){
-        console.log("Error",error.message);
-        setLoading(false);
+  }
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset({
+        email: "",
+        firstname: "",
+        lastname: "",
+        message: "",
+        phoneNo: "",
+      })
     }
-}
+  }, [reset, isSubmitSuccessful])
 
   return (
-    <form onSubmit={handleSubmit(submitContactForm)} >
+    <form
+      className="flex flex-col gap-7"
+      onSubmit={handleSubmit(submitContactForm)}
+    >
+      <div className="flex flex-col gap-5 lg:flex-row">
 
-            <div className=' flex flex-col gap-1'>
-
-            <div className='flex gap-5'>
-        {/* firstname */}
-        <div className='flex flex-col'>
-            <label htmlFor='firstname'>First Name</label>
-            <input type='text' name='firstname' id='firstname' placeholder='Enter your first name' {...register("firstname",{required:true})} className='text-black'/>
-            { 
-                errors.firstname && (<span>Please enter your first name</span>)
-            }
+        <div className="flex flex-col gap-2 lg:w-[48%]">
+          <label htmlFor="firstname" className="lable-style">
+            First Name
+          </label>
+          <input
+            type="text"
+            name="firstname"
+            id="firstname"
+            placeholder="Enter first name"
+            className="form-style"
+            {...register("firstname", { required: true })}
+          />
+          {errors.firstname && (
+            <span className="-mt-1 text-[12px] text-yellow-100">
+              Please enter your name.
+            </span>
+          )}
+        </div>
+        <div className="flex flex-col gap-2 lg:w-[48%]">
+          <label htmlFor="lastname" className="lable-style">
+            Last Name
+          </label>
+          <input
+            type="text"
+            name="lastname"
+            id="lastname"
+            placeholder="Enter last name"
+            className="form-style"
+            {...register("lastname")}
+          />
         </div>
 
-        {/* last name */}
-        <div className='flex flex-col'>
-            <label htmlFor='lastname'>Last Name</label>
-            <input type='text' name='lastname' id='lastname' placeholder='Enter your last name' {...register("lastname")} className='text-black'/>
-        </div>
+      </div>
 
-        </div>
+      <div className="flex flex-col gap-2">
+        <label htmlFor="email" className="lable-style">
+          Email Address
+        </label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Enter email address"
+          className="form-style"
+          {...register("email", { required: true })}
+        />
+        {errors.email && (
+          <span className="-mt-1 text-[12px] text-yellow-100">
+            Please enter your Email address.
+          </span>
+        )}
+      </div>
 
-        {/* email */}
-        <div className='flex flex-col'>
-            <label htmlFor='email' >Email</label>
-            <input type='email' name='email' id='email' placeholder='Enter your email Address' {...register("email",{required:true})} className='text-black'/>
-            {
-                errors.email && (<span>Please enter your email address </span>)
-            }
-        </div>
+      <div className="flex flex-col gap-2">
+        <label htmlFor="phonenumber" className="lable-style">
+          Phone Number
+        </label>
 
-        {/* phone number */}
-        <div className=' flex flex-col gap-2 '>
-
-        <label htmlFor='phonenumber'>Phone Number</label>
-        
-        <div className=' flex flex-row gap-7'>
-
-            {/* drop down */}
-        <div className=' flex w-[15%] gap-5 flex-col'>
-            <select name='dropdown' id='dropdown' {...register("countrycode",{required:true})} className='text-black'>
-                {
-                    countryCode.map( (element , index)=>{
-                        return(
-                            <option key={index} value={element.code} className='text-black'>
-                                {element.code}-{element.country}
-                            </option>
-                        )
-                    })
-                }
-            </select>
-        </div>
-            
-            {/* phonenumber input */}
-        <div className='w-[80%]'>
-            <input type='number' name='phonenumber' id='phonenumber' placeholder='123456789' className='text-black' {...register("phonenumber",
-               {
-                required:{value:true , message:"please enter phone number"},
-                maxLength:{value:10 , message:"invalid phone number"},
-                 minLength:{value:8 , message:"invalid phone number"}
-                }
+        <div className="flex gap-5">
+          <div className="flex w-[81px] flex-col gap-2">
+            <select
+              type="text"
+              name="firstname"
+              id="firstname"
+              placeholder="Enter first name"
+              className="form-style"
+              {...register("countrycode", { required: true })}
+            >
+              {CountryCode.map((ele, i) => {
+                return (
+                  <option key={i} value={ele.code} >
+                    {ele.code} -{ele.country}
+                  </option>
                 )
-                }  />
+              })}
+            </select>
+          </div>
+          <div className="flex w-[calc(100%-90px)] flex-col gap-2">
+            <input
+              type="number"
+              name="phonenumber"
+              id="phonenumber"
+              placeholder="12345 67890"
+              className="form-style"
+              {...register("phoneNo", {
+                required: {
+                  value: true,
+                  message: "Please enter your Phone Number.",
+                },
+                maxLength: { value: 12, message: "Invalid Phone Number" },
+                minLength: { value: 10, message: "Invalid Phone Number" },
+              })}
+            />
+          </div>
         </div>
+        {errors.phoneNo && (
+          <span className="-mt-1 text-[12px] text-yellow-100">
+            {errors.phoneNo.message}
+          </span>
+        )}
+      </div>
 
-            
-        </div>
-        {
-            errors.phonenumber && (
-                <span>{errors.phonenumber.message}</span>
-            )
-        }
+      <div className="flex flex-col gap-2">
+        <label htmlFor="message" className="lable-style">
+          Message
+        </label>
+        <textarea
+          name="message"
+          id="message"
+          cols="30"
+          rows="7"
+          placeholder="Enter your message here"
+          className="form-style"
+          {...register("message", { required: true })}
+        />
+        {errors.message && (
+          <span className="-mt-1 text-[12px] text-yellow-100">
+            Please enter your Message.
+          </span>
+        )}
+      </div>
 
-        </div>
-
-        {/* message box */}
-        <div className=' flex flex-col'>
-            <label htmlFor='message'>Message</label>
-            <textarea name='message' id='message' cols="30" rows="7" placeholder='Enter your message here'{...register("message",{required:true})} className='text-black'></textarea>
-        </div>
-
-        <button type='submit' className='rounded-md bg-yellow-50 text-center px-6 py-3 text-[16px] font-bold text-black'>Send Message </button>
-            </div>
-
-
-    
-
+      <button
+        disabled={loading}
+        type="submit"
+        className={`rounded-md bg-yellow-50 px-6 py-3 text-center text-[13px] font-bold text-black shadow-[2px_2px_0px_0px_rgba(255,255,255,0.18)] 
+         ${
+           !loading &&
+           "transition-all duration-200 hover:scale-95 hover:shadow-none"
+         }  disabled:bg-richblack-500 sm:text-[16px] `}
+      >
+        Send Message
+      </button>
+      
     </form>
   )
 }

@@ -9,6 +9,7 @@ import ResetPassword from './pages/ResetPassword';
 import UpdatePassword from './pages/UpdatePassword';
 import VerifyEmail from './pages/VerifyEmail';
 import About from './pages/About';
+import Contact from "./pages/Contact"
 
 
 
@@ -25,7 +26,7 @@ function App() {
             <Route path='/update-password/:id'element={<OpenRoute> <UpdatePassword/> </OpenRoute> }></Route>
             <Route path='/verify-email'element={ <OpenRoute> <VerifyEmail/></OpenRoute>  }></Route>
             <Route path='/about'element={ <OpenRoute> <About/></OpenRoute>  }></Route>
-
+            <Route path="/contact" element={<Contact />} />
     
 
 

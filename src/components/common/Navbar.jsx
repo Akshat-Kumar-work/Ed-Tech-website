@@ -29,7 +29,7 @@ const Navbar = () => {
       try{
         //api calling
           const result = await apiConnector("GET" ,categories.CATEGORIES_API );
-         // console.log("printing sublink result",result)
+         console.log("printing sublink result",result)
           setSubLinks(result.data.data)
          }
          catch(err){
