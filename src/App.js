@@ -27,7 +27,7 @@ function App() {
             <Route path='/verify-email'element={ <OpenRoute> <VerifyEmail/></OpenRoute>  }></Route>
             <Route path='/about'element={ <OpenRoute> <About/></OpenRoute>  }></Route>
             <Route path="/contact" element={<Contact />} />
-    
+            <Route path='/dashboard/my-profile' element={<OpenRoute>  </OpenRoute>}/>
 
 
            
