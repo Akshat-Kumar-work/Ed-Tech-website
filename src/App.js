@@ -29,8 +29,9 @@ function App() {
             <Route path='/verify-email'element={ <OpenRoute> <VerifyEmail/></OpenRoute>  }></Route>
             <Route path='/about'element={ <OpenRoute> <About/></OpenRoute>  }></Route>
             <Route path="/contact" element={<Contact />} />
-            <Route element={ <PrivateRoute> <Dashboard/></PrivateRoute>} />
+            <Route element={ <PrivateRoute> <Dashboard/> </PrivateRoute>} >
             <Route path='/dashboard/my-profile' element={  <MyProfile/>  }/> 
+            </Route>
             <Route path='*' element={<Error/>} />
 
             
