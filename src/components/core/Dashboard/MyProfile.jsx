@@ -6,7 +6,7 @@ import { RiEditBoxLine } from "react-icons/ri"
 
 const MyProfile = () => {
     const {user} = useSelector( (state)=>state.profile)
-    console.log("user value",user)
+   
 
     const navigate = useNavigate();
     
