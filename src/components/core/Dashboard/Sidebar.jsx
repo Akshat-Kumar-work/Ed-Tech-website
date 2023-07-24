@@ -6,7 +6,7 @@ import SidebarLinks from './SidebarLinks'
 import { useNavigate } from 'react-router-dom'
 import { VscSignOut } from 'react-icons/vsc'
 import ConfirmationModal from '../../common/ConfirmationModal'
-import { CiLight } from 'react-icons/ci'
+
 
 const Sidebar = () => {
     const {user , loading:profileLoading} = useSelector( (state)=>state.profile);

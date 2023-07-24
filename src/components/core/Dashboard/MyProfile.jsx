@@ -5,8 +5,9 @@ import IconBtn from '../../common/IconBtn'
 
 const MyProfile = () => {
     const {user} = useSelector( (state)=>state.profile)
+    console.log(user.additionalDetails.about)
     const navigate = useNavigate();
-
+    
   return (
     <div className='text-white'>
 
@@ -27,6 +28,16 @@ const MyProfile = () => {
             <IconBtn text="Edit" onclick={()=>navigate("/dashboard/settings")}>
 
             </IconBtn>
+    </div>
+
+    {/* section 2 */}
+    <div>
+          <div className=''>
+            <p>About</p>
+            <IconBtn text="Edit" onclick={ ()=>navigate("/dashboard/settings")}></IconBtn>
+            <p>{user?.additionalDetails.about ??  "Write Something about Yourself" }</p>
+            
+          </div>
     </div>
 
 
