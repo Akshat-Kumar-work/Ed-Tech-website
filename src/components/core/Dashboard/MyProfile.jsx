@@ -6,7 +6,8 @@ import { RiEditBoxLine } from "react-icons/ri"
 
 const MyProfile = () => {
     const {user} = useSelector( (state)=>state.profile)
-  
+    console.log("user value",user)
+
     const navigate = useNavigate();
     
   return (
@@ -48,7 +49,7 @@ const MyProfile = () => {
 
       <div className="flex w-full items-center justify-between">
         <p className="text-lg font-semibold text-richblack-5">Personal Details</p>
-        <IconBtn text="Edit" onclick={()=>{navigate("/dashbard/settings")}} />
+        <IconBtn text="Edit" onclick={()=>{navigate("/dashboard/settings")}} />
       </div>
 
       <div className="flex max-w-[500px] justify-between">
