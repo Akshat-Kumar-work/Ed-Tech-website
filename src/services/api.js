@@ -1,7 +1,5 @@
 //this file contain all api routes which i had created while developing backend
 
-
-
 const BASE_URL = process.env.REACT_APP_BASE_URL
 
 
