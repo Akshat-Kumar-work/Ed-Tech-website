@@ -4,6 +4,7 @@ import Iconbtn from "../../../common/IconBtn"
 
 const RenderTotalAmount = () => {
     const {total} = useSelector((state)=>state.cart)
+    const {cart} = useSelector ( (state)=>state.cart)
     const handleBuyCourse=()=>{
         const courses = cart.map( (course)=>course._id)
         console.log(courses)
