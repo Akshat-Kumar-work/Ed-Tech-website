@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom"
 
 function OpenRoute({ children }) {
   const { token } = useSelector((state) => state.auth)
-  //agar token state m token nai hai toh mtlb login nahi hai ,render krwao children like login page and signup page
+  //agar token state m token nai hai toh mtlb login nahi hai ,render krwao children 
   if (token === null) {
     
     return children

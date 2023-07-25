@@ -74,7 +74,7 @@ const Navbar = () => {
                                  top-[50%]
                                 flex flex-col rounded-md bg-richblack-5 p-4 text-richblack-900
                                 opacity-0 transition-all duration-200 group-hover:visible
-                                group-hover:opacity-100 lg:w-[300px]'>
+                                group-hover:opacity-100 lg:w-[300px] '>
 
                              <div className='absolute left-[50%] top-0
                                 translate-x-[80%]

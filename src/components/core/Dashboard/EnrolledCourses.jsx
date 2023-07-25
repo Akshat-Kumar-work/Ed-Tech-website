@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react'
 import {getEnrolledCourses} from "../../../services/operations/profileAPI"
 import { useSelector } from 'react-redux'
 import ProgressBar from '@ramonak/react-progress-bar';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const EnrolledCourses = () => {
 
     const {token} = useSelector( (state)=>state.auth);
     const [enrolledCourses , setEnrolledCourses] = useState(null);
+    const navigate = useNavigate()
 
     const getEnrolledCourse= async()=>{
         try{

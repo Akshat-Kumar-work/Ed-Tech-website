@@ -14,13 +14,22 @@ const tabsName=[
 
 const ExploreMore = () => {
     const [currentTab,setCurrentTab] = useState(tabsName[0]);
+    
+
     const [courses , setCourses] = useState(HomePageExplore[0].courses);
+   
+
     const [currentCard , setCurrentCard] = useState(HomePageExplore[0].courses[0].heading);
+   
     
     const setMyCards = (currentTab)=>{
         setCurrentTab(currentTab);
+
+        //result contain all courses of current tab
         const result = HomePageExplore.filter((course)=>course.tag === currentTab);
+    
         setCourses(result[0].courses);
+
         setCurrentCard(result[0].courses[0].heading)
     };
   return (
