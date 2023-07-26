@@ -43,7 +43,7 @@ const CourseInformationForm = () => {
       setLoading(false);
     }
 
-    //agar editCourse true hua hai toh course ki properties update krdo on behalf of register string
+    //agar editCourse true hua hai toh form ki value update krdo , jo course k andar properties hai us se
     if(editCourse){
       setValue("courseTitle",course.courseName)
       setValue("courseShortDesc",course.courseDescription)
@@ -160,6 +160,7 @@ formData.append("thumbnailImage", data.courseImage)
 console.log("new form data",formData)
 
 setLoading(true);
+// creating course
 const result = await addCourseDetails(formData,token);
 if(result){
   dispatch(setStep(2));
