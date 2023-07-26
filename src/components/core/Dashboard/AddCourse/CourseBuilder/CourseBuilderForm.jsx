@@ -14,24 +14,28 @@ import NestedView from './NestedView'
 const CourseBuilderForm = () => {
 
   const dispatch = useDispatch()
+  // here editSectionName is section id
   const [editSectionName , setEditSectionName] = useState(null)
   const {course} = useSelector( (state)=>state.course)
   const {register , handleSubmit,setValue , formState:{errors}} = useForm();
   const [loading ,setLoading] = useState(false);
-  const [token] = useSelector( (state)=>state.auth)
+  const {token}= useSelector( (state)=>state.auth)
 
   const cancelEdit = ()=>{
     setEditSectionName(null);
     setValue("sectionName","");
   }
 
-  const goBack = ()=>{
-    dispatch(setStep(1))
-    dispatch(setEditCourse(true))
-  }
+    
+  const goBack = () => {
+    console.log("go back")
+      dispatch(setStep(1))
+      dispatch(setEditCourse(true))
+    }
+
 
   const goToNext = ()=>{
-    if(course.courseContent.length === 0){
+    if(course?.courseContent.length === 0){
       toast.error("Please add atleast one section")
       return;
     }
@@ -42,10 +46,12 @@ const CourseBuilderForm = () => {
     //if everthing good
     dispatch(setStep(3))
   }
-  
-  let result;
+
+
 
   const onSubmit = async(data)=>{
+    console.log("editing section name")
+    let result;
     setLoading(true);
     if(editSectionName){
       //we are  editing section name
@@ -55,9 +61,8 @@ const CourseBuilderForm = () => {
     else{
       result = await createSection( {sectionName : data.sectionName , courseId:course._id},token )
     }
-  }
 
-  //update values
+    //update values
   if(result){
     dispatch(setCourse(result));
     setEditSectionName(null);
@@ -67,14 +72,20 @@ const CourseBuilderForm = () => {
   //loading false
   setLoading(false)
 
+  }
+
+  
   const handleChangeEditSectionName = (sectionName ,sectionId)=>{
+
     if(editSectionName === sectionId){
       cancelEdit();
       return
     }
+
     setEditSectionName(sectionId);
     setValue("sectioName",sectionName);
   }
+
 
   return (
     <div className='text-white'>
@@ -98,21 +109,30 @@ const CourseBuilderForm = () => {
 
           <div className=' mt-10 flex w-full'>
 
+
         <IconBtn type="Submit" text={ !editSectionName ? "Create Section" : "Edit Section Name"} outline={true} customClasses={"text-white"} >  
         <BiAddToQueue className='text-yellow-50' size={20}/>
         </IconBtn>
 
+         
         {editSectionName && (<button type='Button' onClick={cancelEdit} className='text-sm text-richblack-300 underline ml-5'>Cancel Edit</button>)}
+
+
           </div>
 
           {/* sections */}
-          {course.courseContent.length >0 && (
+          
+          {course.courseContent?.length > 0 && (
             <NestedView handleChangeEditSectionName={handleChangeEditSectionName}/>
+            
           )}
 
-          <div className='flex justify-end gap-x-3'>
-            <button onclick={goBack} className='rounded-md cursor-pointer flex items-center '>Back</button>
+          <div className='flex justify-end gap-x-3 mt-10'>
+
+            <button onClick={goBack} className='rounded-md cursor-pointer flex items-center '>Back</button>
+
             <IconBtn text="next" onclick={goToNext}> <BiRightArrow/></IconBtn>
+
           </div>
 
 

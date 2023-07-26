@@ -7,6 +7,7 @@ import RequirementField from './RequirementField';
 import {setStep} from '../../../../../slices/courseSlice'
 import IconBtn from "../../../../common/IconBtn"
 import { setCourse } from '../../../../../slices/courseSlice';
+import {toast} from "react-hot-toast"
 
 import {COURSE_STATUS} from "../../../../../utils/constants"
 import ChipInput from './ChipInput';
@@ -26,9 +27,6 @@ const CourseInformationForm = () => {
     getValues,
     formState:{errors}
   }=useForm();
-
-  
-
 
 
   const dispatch = useDispatch();
@@ -55,87 +53,85 @@ const CourseInformationForm = () => {
       setValue("courseImage",course.thumbnail)
     }
     getCategories()
-  },[]
-  
-  )
+  },[])
 
-  // const isFormUpdated= ()=>{
+  const isFormUpdated= ()=>{
 
-  //   const currentValues = getValues();
+    const currentValues = getValues();
 
 
-  //   if(currentValues.courseTitle !== course.courseName ||
-  //     currentValues.courseShortDesc !== course.courseDescription ||
-  //     currentValues.coursePrice !== course.price ||
-  //      currentValues.courseTags.toString()!== course.tag.toString() ||
-  //     currentValues.courseCategory._id!== course.category._id ||
-  //     currentValues.courseImage !== course.thumbnail ||
-  //     currentValues.courseRequirements.toString() !== course.instructions.toString() ){
-  //     return true
-  //   }
-  //   else{
-  //     return false
-  //   }
-  // }
+    if(currentValues.courseTitle !== course.courseName ||
+      currentValues.courseShortDesc !== course.courseDescription ||
+      currentValues.coursePrice !== course.price ||
+       currentValues.courseTags.toString()!== course.tag.toString() ||
+      currentValues.courseCategory._id!== course.category._id ||
+      currentValues.courseImage !== course.thumbnail ||
+      currentValues.courseRequirements.toString() !== course.instructions.toString() ){
+      return true
+    }
+    else{
+      return false
+    }
+  }
 
   const onSubmit = async(data)=>{
   
 
-//  if(editCourse){
+ if(editCourse){
 
-//   if(isFormUpdated()){
+  if(isFormUpdated()){
 
     
-//       const currentValues = getValues();
-//       const formData = new FormData()
+      const currentValues = getValues();
+      const formData = new FormData()
    
 
-//       formData.append("courseId",course._id);
+      formData.append("courseId",course._id);
 
-//       if(currentValues.courseTitle!== course.courseName){
-//         formData.append("courseName",data.courseTitle)
-//       }
+      if(currentValues.courseTitle!== course.courseName){
+        formData.append("courseName",data.courseTitle)
+      }
 
-//       if(currentValues.courseShortDesc !== course.courseDescription){
-//         formData.append("courseDescription",data.courseShortDesc)
+      if(currentValues.courseShortDesc !== course.courseDescription){
+        formData.append("courseDescription",data.courseShortDesc)
 
-//       }
-//       if(currentValues.coursePrice !== course.price){
-//         formData.append("price",data.coursePrice)
+      }
+      if(currentValues.coursePrice !== course.price){
+        formData.append("price",data.coursePrice)
 
-//       }
-//       if (currentValues.courseTags.toString() !== course.tag.toString()) {
-//         formData.append("tag", JSON.stringify(data.courseTags))
-//       }
+      }
+      if (currentValues.courseTags.toString() !== course.tag.toString()) {
+        formData.append("tag", JSON.stringify(data.courseTags))
+      }
       
-//       if(currentValues.courseCategory._id!== course.category._id ){
-//         formData.append("category",data.courseCategory)
+      if(currentValues.courseCategory._id!== course.category._id ){
+        formData.append("category",data.courseCategory)
 
-//       }
-//       if (currentValues.courseImage !== course.thumbnail) {
-//         formData.append("thumbnailImage", data.courseImage)
-//       }
+      }
+      if (currentValues.courseImage !== course.thumbnail) {
+        formData.append("thumbnailImage", data.courseImage)
+      }
 
-//      if( currentValues.courseRequirements.toString() !== course.instructions.toString() ){
-//       formData.append("instructions", JSON.stringify(data.courseRequirements))
+     if( currentValues.courseRequirements.toString() !== course.instructions.toString() ){
+      formData.append("instructions", JSON.stringify(data.courseRequirements))
 
-//      }
+     }
 
-//      setLoading(true);
-//      const result = await editCourseDetails(formData,token);
-//      setLoading(false);
-//      if(result){
-//       setStep(2);
-//       dispatch(setCourse(result));
-//      }
-//   }
+     setLoading(true);
+     const result = await editCourseDetails(formData,token);
+     setLoading(false);
+     if(result){
+      setStep(2);
+      dispatch(setCourse(result));
+     }
+  }
   
-//   else{
-//     toast.error("NO CHANGES MADE SO FAR ")
-//   }
-//   return;
+  else{
+    toast.error("NO CHANGES MADE SO FAR ")
+  }
+  return;
 
-// }
+}
 
 
 
