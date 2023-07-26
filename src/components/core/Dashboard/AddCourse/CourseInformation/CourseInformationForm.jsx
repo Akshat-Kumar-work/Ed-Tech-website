@@ -7,7 +7,7 @@ import RequirementField from './RequirementField';
 import {setStep} from '../../../../../slices/courseSlice'
 import IconBtn from "../../../../common/IconBtn"
 import { setCourse } from '../../../../../slices/courseSlice';
-import { toast } from 'react-hot-toast';
+
 import {COURSE_STATUS} from "../../../../../utils/constants"
 import ChipInput from './ChipInput';
 import Upload from './Upload';
@@ -55,29 +55,31 @@ const CourseInformationForm = () => {
       setValue("courseImage",course.thumbnail)
     }
     getCategories()
-  },[])
+  },[]
+  
+  )
 
-  const isFormUpdated= ()=>{
+  // const isFormUpdated= ()=>{
 
-    const currentValues = getValues();
+  //   const currentValues = getValues();
 
 
-    if(currentValues.courseTitle !== course.courseName ||
-      currentValues.courseShortDesc !== course.courseDescription ||
-      currentValues.coursePrice !== course.price ||
-       currentValues.courseTags.toString()!== course.tag.toString() ||
-      currentValues.courseCategory._id!== course.category._id ||
-      currentValues.courseImage !== course.thumbnail ||
-      currentValues.courseRequirements.toString() !== course.instructions.toString() ){
-      return true
-    }
-    else{
-      return false
-    }
-  }
+  //   if(currentValues.courseTitle !== course.courseName ||
+  //     currentValues.courseShortDesc !== course.courseDescription ||
+  //     currentValues.coursePrice !== course.price ||
+  //      currentValues.courseTags.toString()!== course.tag.toString() ||
+  //     currentValues.courseCategory._id!== course.category._id ||
+  //     currentValues.courseImage !== course.thumbnail ||
+  //     currentValues.courseRequirements.toString() !== course.instructions.toString() ){
+  //     return true
+  //   }
+  //   else{
+  //     return false
+  //   }
+  // }
 
   const onSubmit = async(data)=>{
-    console.log("course data",data)
+  
 
 //  if(editCourse){
 
@@ -135,10 +137,16 @@ const CourseInformationForm = () => {
 
 // }
 
+
+
+
+
 //CREATE A NEW COURSE
 
+//ek new formdata create kia request m bhjne k liye 
 const formData  = new FormData();
 
+//formdata m save kar rhe hai values ko according to backend
 formData.append("courseName", data.courseTitle)
 formData.append("courseDescription", data.courseShortDesc)
 formData.append("price", data.coursePrice)
@@ -163,51 +171,54 @@ setLoading(false)
 
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='rounded-md border-richblack-700 bg-richblack-800 p-6 space-y-8'>
+    <form onSubmit={handleSubmit(onSubmit)}
+  className="space-y-8 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6">
 
 
 
     {/* course title */}
-    <div>
-          <label htmlFor='courseTitle'>Course Title</label>
-          <input id='courseTitle' placeholder='Enter Course Title' {...register("courseTitle",{required:true})} className='w-full'/>
+    <div className="flex flex-col space-y-2">
+          <label htmlFor='courseTitle' className="text-sm text-richblack-5">Course Title <sup className="text-pink-200">*</sup></label>
+          <input id='courseTitle' placeholder='Enter Course Title' {...register("courseTitle",{required:true})}
+            className="form-style w-full"
+          />
           {
             errors.courseTitle &&(
-              <span>Course Title is required</span>
+              <span className="ml-2 text-xs tracking-wide text-pink-200">Course Title is required</span>
             )
           }
     </div>
 
 
     {/* course short description */}
-    <div>
-      <label htmlFor='courseShortDesc'>Course Short Description</label>
-      <textarea id="courseShortDesc" placeholder='Enter Description' {...register( "courseShortDesc",{required:true})} className='w-full min-h-[130px] '/>
+    <div className="flex flex-col space-y-2">
+      <label htmlFor='courseShortDesc' className="text-sm text-richblack-5" >Course Short Description <sup className="text-pink-200">*</sup></label>
+      <textarea id="courseShortDesc" placeholder='Enter Description' {...register( "courseShortDesc",{required:true})} className="form-style resize-x-none min-h-[130px] w-full" />
       {
         errors.courseShortDesc &&(
-          <span>Course Description is required</span>
+          <span className="ml-2 text-xs tracking-wide text-pink-200">Course Description is required </span>
         )
       }
     </div>
 
 
     {/* course price */}
-    <div className='relative'>
-      <label htmlFor='coursePrice'>Course Price</label>
-      <input id='coursePrice' placeholder='Enter Course Price' {...register("coursePrice",{required:true , valueAsNumber:true}) } className='w-full '/>
-      <HiOutlineCurrencyRupee className='absolute top-1/2 text-richblack-400'/>
+    <div className="flex flex-col space-y-2">
+      <label htmlFor='coursePrice' className="text-sm text-richblack-5" >Course Price <sup className="text-pink-200">*</sup></label>
+      <input id='coursePrice' placeholder='Enter Course Price' {...register("coursePrice",{required:true , valueAsNumber:true}) } className="form-style w-full !pl-12"/>
+      <HiOutlineCurrencyRupee className=" top-1/2 inline-block -translate-y-[45px] translate-x-[6px] text-2xl text-white "/>
       {
         errors.coursePrice &&(
-          <span>Course Price is required</span>
+          <span className="ml-2 text-xs tracking-wide text-pink-200">Course Price is required</span>
         )
       }
     </div>
 
 
     {/* categories drop down  */}
-    <div>
-          <label htmlFor='courseCategory'>Course Categories</label>
-          <select id='courseCategory' defaultValue="" {...register("courseCategory",{required:true})}>
+    <div className="flex flex-col space-y-2">
+          <label className="text-sm text-richblack-5" htmlFor='courseCategory'> Course Categories <sup className="text-pink-200">*</sup> </label>
+          <select id='courseCategory' defaultValue="" {...register("courseCategory",{required:true})} className="form-style w-full">
                   <option value="" disabled >Choose a Category</option>
                   {
                     !loading && courseCategories.map( (category,index)=>{
@@ -221,7 +232,7 @@ setLoading(false)
            </select>
            {
             errors.courseCategories &&(
-              <span>Course Categories is required</span>
+              <span className="ml-2 text-xs tracking-wide text-pink-200">Course Categories is required</span>
             )
            }
     </div>
@@ -250,12 +261,12 @@ setLoading(false)
 
 
     {/* benefits of the course */}
-    <div>
-      <label htmlFor='courseBenefits'>Benefits of the course</label>
-      <textarea id='courseBenefits' placeholder='Enter Benefits of the course' {...register('courseBenefits',{required:true})} className='min-h[130px] w-full'/>
+    <div className="flex flex-col space-y-2">
+      <label htmlFor='courseBenefits' className="text-sm text-richblack-5" >Benefits of the course <sup className="text-pink-200">*</sup></label>
+      <textarea id='courseBenefits' placeholder='Enter Benefits of the course' {...register('courseBenefits',{required:true})} className="form-style resize-x-none min-h-[130px] w-full"/>
       {
         errors.courseBenefits && (
-          <span>Course Benefits are required</span>
+          <span className="ml-2 text-xs tracking-wide text-pink-200">Course Benefits are required</span>
         )
       }
     </div>
@@ -265,11 +276,12 @@ setLoading(false)
     <RequirementField name="courseRequirements" label="Requirement / Instructions" register={register} errors={errors} setValue={setValue} getValues={getValues}/>
 
 
-      <div>
+      {/* next btn */}
+      <div className="flex justify-end gap-x-2">
 
             {
               editCourse && (
-                <button onClick={()=>dispatch(setStep(2))} className='flex items-center gap-x-2 bg-richblack-300'>Continue Without Save</button>                
+                <button onClick={()=>dispatch(setStep(2))} className={`flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-900` }>Continue Without Save</button>                
               )
             }
 

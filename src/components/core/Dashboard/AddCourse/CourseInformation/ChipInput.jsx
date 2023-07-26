@@ -5,16 +5,9 @@ import { MdClose } from "react-icons/md"
 import { useSelector } from "react-redux"
 
 // Defining a functional component ChipInput
-export default function ChipInput({
-  // Props to be passed to the component
-  label,
-  name,
-  placeholder,
-  register,
-  errors,
-  setValue,
-  getValues,
-}) {
+export default function ChipInput({label, name, placeholder, register,errors, setValue, getValues,}){
+
+  
   const { editCourse, course } = useSelector((state) => state.course)
 
   // Setting up state for managing chips array
@@ -26,12 +19,11 @@ export default function ChipInput({
       setChips(course?.tag)
     }
     register(name, { required: true, validate: (value) => value.length > 0 })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [])
 
   useEffect(() => {
     setValue(name, chips)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chips])
 
   // Function to handle user input when chips are added
