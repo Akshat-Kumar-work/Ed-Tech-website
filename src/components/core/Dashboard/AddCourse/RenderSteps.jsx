@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import {FaCheck} from "react-icons/fa"
 import CourseInformationForm from './CourseInformation/CourseInformationForm'
 import CourseBuilderForm from './CourseBuilder/CourseBuilderForm'
+import PublishCourse from './PublishCourse'
 
 const RenderSteps = () => {
  
@@ -26,7 +27,7 @@ const RenderSteps = () => {
   return (
     <> 
      <div className="relative mb-2 flex w-full justify-center">
-        {steps.map((item) => (
+        {steps.map((item,index) => (
           < >
             <div
               className="flex flex-col items-center "
@@ -47,15 +48,19 @@ const RenderSteps = () => {
               </button>
               
             </div>
+            
             {item.id !== steps.length && (
               <>
-                <div
+                <div key={index}
                   className={`h-[calc(34px/2)] w-[33%]  border-dashed border-b-2 ${
                   step > item.id  ? "border-yellow-50" : "border-richblack-500"
                 } `}
                 ></div>
               </>
+          
+
             )}
+
           </>
         ))}
       </div>
@@ -85,8 +90,8 @@ const RenderSteps = () => {
       </div>
 
     {step ===1 && <CourseInformationForm/>}
-   {step ===2 && <CourseBuilderForm/>
-    /* {step ===3 && <PublishCourse/>} */} */
+   {step ===2 && <CourseBuilderForm/>}
+   {  step ===3 && <PublishCourse/>}
 
     </>
 

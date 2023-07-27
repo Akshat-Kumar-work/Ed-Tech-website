@@ -3,12 +3,14 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux';
 import {toast} from "react-hot-toast";
-import {createSubSection, editCourseDetails, updateSubSection} from "../../../../../services/operations/courseDetailsAPI";
+import {createSubSection, updateSubSection} from "../../../../../services/operations/courseDetailsAPI";
 import { setCourse } from '../../../../../slices/courseSlice';
 import {RxCross1} from "react-icons/rx";
 import Upload from '../CourseInformation/Upload';
 import IconBtn from "../../../../common/IconBtn"
-import {  useSelector } from 'react-redux/es/hooks/useSelector';
+import { useSelector } from 'react-redux';
+
+
 
 
 const SubSectionModal = ({modalData , setModalData , add=false , view=false , edit=false}) => {
@@ -61,30 +63,41 @@ const SubSectionModal = ({modalData , setModalData , add=false , view=false , ed
           //edit kro
           handleEditSubSection();
         }
-
+        return
       }
 
-      //agar add kar rhe hai subsection ko
-      const formData = new FormData();
-      formData.append("sectionId",modalData);
-      formData.append("title",data.lectureTitle);
-      formData.append("description",data.lectureDesc);
-      formData.append("video",data.lectureVideo);
-      setLoading(true);
-      //api call
-      const result = await createSubSection({formData , token});
-      if(result){
-        //course state k andar course dalre hai
-        dispatch(setCourse(result));
+  
+       //agar add kar rhe hai subsection ko
+       const formData = new FormData();
+       formData.append("sectionId",modalData);
+       formData.append("title",data.lectureTitle);
+       formData.append("description",data.lectureDesc);
+       formData.append("video",data.lectureVideo);
+       setLoading(true);
+       //api call
+       const result = await createSubSection(formData ,token);
 
-      }
-      setModalData(null);
-      setLoading(false)
+       if(result){
+         const updatedCourseContent = course.courseContent.map((section) =>{
+          return(
+            (section._id === modalData? result : section)
+          )
+         }
+       )
+     
+       const updatedCourse = { ...course, courseContent: updatedCourseContent }
+    
+       dispatch(setCourse(updatedCourse))
+       
+       }
+       setModalData(null);
+       setLoading(false)
+  
 
     }
 
 
-
+ // handle the editing of subsection
     const handleEditSubSection = async()=>{
       const currentValues = getValues();
       const formData = new FormData();
@@ -108,8 +121,11 @@ const SubSectionModal = ({modalData , setModalData , add=false , view=false , ed
       setLoading(true);
       const result = await updateSubSection({formData , token});
       if(result){
-        //course state k andr update kr rhe hai
-        dispatch(setCourse(result))
+        const updatedCourseContent = course.courseContent.map((section) =>
+        section._id === modalData ? result : section
+      )
+      const updatedCourse = { ...course, courseContent: updatedCourseContent }
+      dispatch(setCourse(updatedCourse))
       }
       setModalData(null);
       setLoading(false);
@@ -119,7 +135,7 @@ const SubSectionModal = ({modalData , setModalData , add=false , view=false , ed
     <div>
           <div>
 
-
+ {/* Modal Header */}
                 <div>
                   <p>{view && "Viewing"} {add && "Adding"} {edit && "Editing"} Lecture</p>
                   <button onClick={()=>(!loading ? setModalData(null):{})}>
@@ -127,6 +143,7 @@ const SubSectionModal = ({modalData , setModalData , add=false , view=false , ed
                   </button>
                 </div>
 
+                {/* modal form */}
                <form onSubmit={handleSubmit(onSubmit)}>
 
 
@@ -169,6 +186,7 @@ const SubSectionModal = ({modalData , setModalData , add=false , view=false , ed
 
 
               </form>
+
           </div>
     </div>
   )

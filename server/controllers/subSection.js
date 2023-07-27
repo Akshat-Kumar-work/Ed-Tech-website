@@ -10,9 +10,9 @@ exports.createSubSection = async(req ,res)=>{
         //fetching data from req
         const{ sectionId ,  title , timeDuration , description   } = req.body;
         // fetching video file 
-        const video = req.files.file
+        const video = req.files.video
         //validation
-        if(!sectionId || !title || !timeDuration || !description ||!video){
+        if(!sectionId || !title  || !description ||!video){
             return res.status(400).json({
                 success:false,
                 message:"all fields are not filled"
@@ -97,37 +97,37 @@ exports.updateSubSection = async (req, res) => {
 
 
 //delete sub section handler
-exports.deletesubSection = async(req,res) =>{
-    try{
-      
-        //we are assuming that we are sending id in parameters
-        const{subsectionId ,sectionId} = req.body;
+exports.deleteSubSection = async (req, res) => {
+  try {
+    const { subsectionId, sectionId } = req.body
+    await Section.findByIdAndUpdate(
+      { _id: sectionId },
+      {
+        $pull: {
+          subSection: subsectionId,
+        },
+      }
+    )
+    const subSection = await SubSection.findByIdAndDelete({ _id: subsectionId })
 
-       if (!subsectionId){
-        return res.status(400).json({
-            success:"false",
-            message:"missing properties"
-        })
-       }
-
-       const newsubSection = await SubSection.findByIdAndDelete( subsectionId ,{new:true});
-
-       const updatedSection = await Section.findById(sectionId).populate("subSection");
-
-       //to delte in section also
-
-       return res.status(200).json({
-        success:true,
-        message:"deleted successfully",
-        data:updatedSection
-       })
+    if (!subSection) {
+      return res
+        .status(404)
+        .json({ success: false, message: "SubSection not found" })
     }
-    catch(err){
-        console.log(err)
-        return res.status(500).json({
-            success:false,
-            message:"unable to delete subsection",
-            error:err
-        })
-    }
+
+    const updatedSection = await Section.findById(sectionId).populate("subSection")
+
+    return res.json({
+      success: true,
+      data:updatedSection,
+      message: "SubSection deleted successfully",
+    })
+  } catch (error) {
+    console.error(error)
+    return res.status(500).json({
+      success: false,
+      message: "An error occurred while deleting the SubSection",
+    })
+  }
 }

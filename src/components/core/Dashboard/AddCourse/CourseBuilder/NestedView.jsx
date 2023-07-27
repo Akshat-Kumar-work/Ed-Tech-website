@@ -38,9 +38,13 @@ const NestedView = ({handleChangeEditSectionName}) => {
     }
 
     const handleDeleteSubSection= async(subsectionId , sectionId)=>{
-        const response = await deleteSubSection( {subsectionId , sectionId , token});
+        const response = await deleteSubSection( {subsectionId , sectionId }, token);
         if(response){
-            dispatch(setCourse(response))
+            //response m updated subsection ayga , usko course slice k andar coursecontent m jo section hai usme update kr rhee hai
+            const updatedCourseContent = course.courseContent.map((section)=>section._id === sectionId ?response :section)
+            //updated course content ko course slice m dal dia
+            const updatedCourse = {...course , courseContent:updatedCourseContent}
+            dispatch(setCourse(updatedCourse))
         }
         setConfirmationModal(null)
     }
@@ -50,11 +54,13 @@ const NestedView = ({handleChangeEditSectionName}) => {
 
   return (
 
-    <div >
+    < >
 
          <div className='rounded-lg bg-richblack-700 p-6 px-8'>
 
                 <div>
+            
+
                 {/* section */}
                     {course?.courseContent?.map( (section)=>{
                    
@@ -166,19 +172,19 @@ const NestedView = ({handleChangeEditSectionName}) => {
 
          </div>
 
-        
         {/* subsection modal */}
-         {addSubSection ? (<SubSectionModal modaldata={addSubSection} setModalData={setAddSubSection} add={true}/>) :
-          viewSubsection ? (<SubSectionModal modaldata={viewSubsection} setModalData={setViewSubSection} view={true} />) : 
-          editSubSection ? (<SubSectionModal modaldata={editSubSection} setModalData={setEditSubSection} edit={true}/>) : 
-          (<div></div>)}
+         {addSubSection ? (<SubSectionModal modalData={addSubSection} setModalData={setAddSubSection} add={true}/>) :
+          viewSubsection ? (<SubSectionModal modalData={viewSubsection} setModalData={setViewSubSection} view={true} />) : 
+          editSubSection ? (<SubSectionModal modalData={editSubSection} setModalData={setEditSubSection} edit={true}/>) : 
+          (<></>)}
 
         {/* confirmation modal */}
         
-          {confirmationModal ? (<ConfirmationModal modalData={confirmationModal}/>):(<div></div>)}
+          {confirmationModal ? (<ConfirmationModal modalData={confirmationModal}/>):(<></>)}
 
-    </div>
+    </>
   )
 }
 
 export default NestedView
+

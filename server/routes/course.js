@@ -6,7 +6,7 @@ const router = express.Router()
 
 //-----------------------------------------importing CONTROLLERS-------------------------------------
 //course controllers
-const { createCourse , getAllCourses , getCourseDetails} = require("../controllers/course")
+const { createCourse , getAllCourses , getCourseDetails , getFullCourseDetails , editCourse , getInstructorCourses ,deleteCourse} = require("../controllers/course")
 
 //category controller
 const { createCategory , showAllCategories , categoryPageDetails} = require("../controllers/category")
@@ -15,7 +15,7 @@ const { createCategory , showAllCategories , categoryPageDetails} = require("../
 const { createSection , updateSection , deleteSection} = require("../controllers/section")
 
 //sub section controller
-const { createSubSection , updateSubSection , deletesubSection } = require("../controllers/subSection")
+const { createSubSection , updateSubSection , deleteSubSection } = require("../controllers/subSection")
 
 //rating controller
 const {createRating , getAverageRating , getAllRating} = require("../controllers/ratingAndReview")
@@ -37,6 +37,8 @@ const { auth , isAdmin , isInstructor , isStudent} = require("../middlewares/aut
 
 
 //-----------------------------------------------------------------------------------------------------------------
+
+
 //COURSE ROUTES
 
 //create new course
@@ -47,6 +49,21 @@ router.get("/getAllCourses",getAllCourses);
 
 //get details of specific course
 router.get("/getCourseDetails",getCourseDetails);
+
+// Get Details for a Specific Courses
+router.post("/getFullCourseDetails", auth, getFullCourseDetails)
+
+// Edit Course routes
+router.post("/editCourse", auth, isInstructor, editCourse)
+
+// Get all Courses Under a Specific Instructor
+router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses)
+
+// Delete a Course
+router.delete("/deleteCourse", deleteCourse)
+
+
+
 
 
 //add section to course
@@ -67,7 +84,7 @@ router.post("/addSubsection",auth , isInstructor , createSubSection);
 router.put("/updateSubsection",auth , isInstructor , updateSubSection);
 
 //delete subsection
-router.delete("/deleteSubsection",auth , isInstructor , deletesubSection);
+router.delete("/deleteSubSection",auth , isInstructor , deleteSubSection);
 
 
 //-----------------------------------------------------------------------------------------------------------------

@@ -13,42 +13,20 @@ import NestedView from './NestedView'
 
 const CourseBuilderForm = () => {
 
+
+  const {register , handleSubmit,setValue , formState:{errors}} = useForm();
+
+  
   const dispatch = useDispatch()
   // here editSectionName is section id
   const [editSectionName , setEditSectionName] = useState(null)
   const {course} = useSelector( (state)=>state.course)
-  const {register , handleSubmit,setValue , formState:{errors}} = useForm();
+
   const [loading ,setLoading] = useState(false);
   const {token}= useSelector( (state)=>state.auth)
 
-  const cancelEdit = ()=>{
-    setEditSectionName(null);
-    setValue("sectionName","");
-  }
 
-    
-  const goBack = () => {
-    console.log("go back")
-      dispatch(setStep(1))
-      dispatch(setEditCourse(true))
-    }
-
-
-  const goToNext = ()=>{
-    if(course?.courseContent.length === 0){
-      toast.error("Please add atleast one section")
-      return;
-    }
-    if(course.courseContent.some( (section)=>section.subSection.length === 0)){
-      toast.error("Please add atleast one lecture in each Section")
-      return;
-    }
-    //if everthing good
-    dispatch(setStep(3))
-  }
-
-
-
+    // handle form submission
   const onSubmit = async(data)=>{
     console.log("editing section name")
 
@@ -83,6 +61,38 @@ const CourseBuilderForm = () => {
   setLoading(false)
 
   }
+
+
+
+  const cancelEdit = ()=>{
+    setEditSectionName(null);
+    setValue("sectionName","");
+  }
+
+    
+  const goBack = () => {
+    console.log("go back")
+      dispatch(setStep(1))
+      dispatch(setEditCourse(true))
+    }
+
+
+  const goToNext = ()=>{
+    if(course?.courseContent.length === 0){
+      toast.error("Please add atleast one section")
+      return;
+    }
+    if(course.courseContent.some( (section)=>section.subSection.length === 0)){
+      toast.error("Please add atleast one lecture in each Section")
+      return;
+    }
+    //if everthing good
+    dispatch(setStep(3))
+  }
+
+
+
+ 
 
   
   const handleChangeEditSectionName = (sectionName ,sectionId)=>{
@@ -130,9 +140,15 @@ const CourseBuilderForm = () => {
 
           </div>
 
-          {/* sections */}
+
+      </form>
+
+
+      
+
+        {/* sections */}
           
-          {course.courseContent?.length > 0 && (
+        {course.courseContent?.length > 0 && (
             <NestedView handleChangeEditSectionName={handleChangeEditSectionName}/>
             
           )}
@@ -144,11 +160,9 @@ const CourseBuilderForm = () => {
             <IconBtn text="next" onclick={goToNext}> <BiRightArrow/></IconBtn>
 
           </div>
-
-
-      </form>
     </div>
   )
 }
 
 export default CourseBuilderForm
+
