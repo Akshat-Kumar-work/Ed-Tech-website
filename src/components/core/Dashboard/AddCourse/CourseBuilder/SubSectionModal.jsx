@@ -127,7 +127,7 @@ const SubSectionModal = ({modalData , setModalData , add=false , view=false , ed
                   </button>
                 </div>
 
-                <form onSubmit={handleSubmit(onSubmit)}>
+               <form onSubmit={handleSubmit(onSubmit)}>
 
 
                         <Upload name="lectureVideo" label="Lecture Video" register={register} setValue={setValue} errors={errors} video={true}
@@ -168,7 +168,7 @@ const SubSectionModal = ({modalData , setModalData , add=false , view=false , ed
                   }
 
 
-                </form>
+              </form>
           </div>
     </div>
   )
