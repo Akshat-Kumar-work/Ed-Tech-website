@@ -91,8 +91,6 @@ export default function Upload({
 
           {/* agar video nahi hai toh img show kro*/}
             {!video ? (<img src={previewSource} alt="Preview" className="h-full w-full rounded-md object-cover"/> ) :
-
-            {/* agar video hai toh video show kro*/}
              (<Player aspectRatio="16:9" playsInline src={previewSource} />)}
 
 

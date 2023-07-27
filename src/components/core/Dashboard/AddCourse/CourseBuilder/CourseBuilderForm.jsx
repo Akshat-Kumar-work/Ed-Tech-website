@@ -51,23 +51,33 @@ const CourseBuilderForm = () => {
 
   const onSubmit = async(data)=>{
     console.log("editing section name")
-    let result;
+
+
     setLoading(true);
+
     if(editSectionName){
       //we are  editing section name
-      result = await updateSection({
-        sectionName:data.sectionName , sectionId:editSectionName,courseId:course._id,},token)
-    }
-    else{
-      result = await createSection( {sectionName : data.sectionName , courseId:course._id},token )
+     let result = await updateSection({
+        sectionName:data.sectionName , sectionId:editSectionName,courseId:course._id},token );
+            //update values
+        if(result){
+         dispatch(setCourse(result));
+          setEditSectionName(null);
+        setValue("sectionName","")
+  }
     }
 
-    //update values
+
+    else{
+     let result = await createSection( {sectionName : data.sectionName , courseId:course._id},token );
+         //update values
   if(result){
+    console.log(course)
     dispatch(setCourse(result));
     setEditSectionName(null);
     setValue("sectionName","")
   }
+    }
 
   //loading false
   setLoading(false)

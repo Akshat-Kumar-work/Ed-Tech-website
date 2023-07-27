@@ -31,6 +31,7 @@ const CourseInformationForm = () => {
 
   const dispatch = useDispatch();
 
+  //phle render par categories fetch krlo
   useEffect( ()=>{
     const getCategories = async()=>{
       setLoading(true);
@@ -55,11 +56,14 @@ const CourseInformationForm = () => {
     getCategories()
   },[])
 
+  //kya form update hua hai
   const isFormUpdated= ()=>{
 
+    //sari value form ki fetch kro
     const currentValues = getValues();
 
 
+    //agar course ki value or form ki value equal nai hai toh update hua hai
     if(currentValues.courseTitle !== course.courseName ||
       currentValues.courseShortDesc !== course.courseDescription ||
       currentValues.coursePrice !== course.price ||
@@ -77,15 +81,17 @@ const CourseInformationForm = () => {
   const onSubmit = async(data)=>{
   
 
+    //agar course edit hua hai
  if(editCourse){
 
+  //aur form update hua hai
   if(isFormUpdated()){
 
     
       const currentValues = getValues();
       const formData = new FormData()
    
-
+//form m value update krdo
       formData.append("courseId",course._id);
 
       if(currentValues.courseTitle!== course.courseName){
@@ -118,6 +124,7 @@ const CourseInformationForm = () => {
      }
 
      setLoading(true);
+     //updated value ko pass krdo backend p
      const result = await editCourseDetails(formData,token);
      setLoading(false);
      if(result){
