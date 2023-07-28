@@ -11,7 +11,7 @@ import {toast} from "react-hot-toast"
 
 import {COURSE_STATUS} from "../../../../../utils/constants"
 import ChipInput from './ChipInput';
-import Upload from './Upload';
+import Upload from './Upload'
 
 const CourseInformationForm = () => {
 

@@ -6,7 +6,7 @@ import {toast} from "react-hot-toast";
 import {createSubSection, updateSubSection} from "../../../../../services/operations/courseDetailsAPI";
 import { setCourse } from '../../../../../slices/courseSlice';
 import {RxCross1} from "react-icons/rx";
-import Upload from '../CourseInformation/Upload';
+import Upload from "./Upload"
 import IconBtn from "../../../../common/IconBtn"
 import { useSelector } from 'react-redux';
 
