@@ -1,7 +1,12 @@
 const Course = require("../models/course");
+const SubSection = require("../models/subSection")
+const Section = require("../models/section")
 const User = require("../models/user");
 const {ImageUploaderToCloudinary} = require("../utils/imageUploader");
 const Category = require("../models/category")
+const CourseProgress = require("../models/courseProgress")
+const { convertSecondsToDuration } = require("../utils/secToDuration")
+
 require("dotenv").config();
 
 //create course handler
@@ -264,6 +269,8 @@ exports.deleteCourse = async (req, res) => {
       // Delete sections and sub-sections
       const courseSections = course.courseContent
       for (const sectionId of courseSections) {
+
+
         // Delete sub-sections of the section
         const section = await Section.findById(sectionId)
         if (section) {
@@ -294,10 +301,13 @@ exports.deleteCourse = async (req, res) => {
     }
   }
 
-  exports.getFullCourseDetails = async (req, res) => {
+exports.getFullCourseDetails = async (req, res) => {
     try {
-      const { courseId } = req.body
+      
+      const  {courseId}  = req.body
+ 
       const userId = req.user.id
+
       const courseDetails = await Course.findOne({
         _id: courseId,
       })
@@ -316,6 +326,8 @@ exports.deleteCourse = async (req, res) => {
           },
         })
         .exec()
+
+       
   
       let courseProgressCount = await CourseProgress.findOne({
         courseID: courseId,
@@ -353,12 +365,13 @@ exports.deleteCourse = async (req, res) => {
         data: {
           courseDetails,
           totalDuration,
-          completedVideos: courseProgressCount?.completedVideos
-            ? courseProgressCount?.completedVideos
+          completedVideos: courseProgressCount?.completedVideo
+            ? courseProgressCount?.completedVideo
             : [],
         },
       })
     } catch (error) {
+      console.log(error)
       return res.status(500).json({
         success: false,
         message: error.message,
