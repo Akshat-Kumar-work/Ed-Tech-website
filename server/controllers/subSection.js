@@ -51,8 +51,8 @@ exports.createSubSection = async(req ,res)=>{
 //update subsection handler
 exports.updateSubSection = async (req, res) => {
     try {
-      const { subsectionId, title, description ,sectionId } = req.body
-      const subSection = await SubSection.findById(subsectionId)
+      const { subSectionId, title, description ,sectionId } = req.body
+      const subSection = await SubSection.findById(subSectionId)
   
       if (!subSection) {
         return res.status(404).json({
@@ -70,7 +70,7 @@ exports.updateSubSection = async (req, res) => {
       }
       if (req.files && req.files.video !== undefined) {
         const video = req.files.video
-        const uploadDetails = await uploadImageToCloudinary(
+        const uploadDetails = await ImageUploaderToCloudinary(
           video,
           process.env.FOLDER_NAME
         )
