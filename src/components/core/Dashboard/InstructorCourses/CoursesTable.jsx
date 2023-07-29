@@ -6,7 +6,7 @@ import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css"
 import { COURSE_STATUS } from '../../../../utils/constants';
 import ConfirmationModal from "../../../common/ConfirmationModal"
 import { deleteCourse, fetchInstructorCourses } from '../../../../services/operations/courseDetailsAPI';
-
+import { formatDate } from "../../../../services/formatDate"
 import { HiClock } from 'react-icons/hi';
 import { FaCheck } from 'react-icons/fa';
 import { FiEdit2 } from 'react-icons/fi';
@@ -73,8 +73,10 @@ export default function CoursesTable ({courses , setCourses}){
                                                                         <p className="text-lg font-semibold text-richblack-5">{course.courseName}</p>
                                                                         <p className="text-xs text-richblack-300">{course.courseDescription}</p>
                                                                         <p className="text-[12px] text-white">
-                                                                        date
-                                                                            {/* Created: {formatDate(course.createdAt)} */}
+                                                                       
+                                                                        Created: {formatDate(course.createdAt)}
+                                                                   
+                                                                           
                                                                         </p>
                                                                         {
                                                                                 course.status === COURSE_STATUS.DRAFT ?(
@@ -96,7 +98,7 @@ export default function CoursesTable ({courses , setCourses}){
                                                         </Td>
 
                                                         <Td className="text-sm font-medium text-richblack-100">
-                                                            ${course.price}
+                                                        ₹{course.price}
                                                         </Td>
 
                                                         <Td className="text-sm font-medium text-richblack-100 ">
