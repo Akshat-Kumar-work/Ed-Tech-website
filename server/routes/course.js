@@ -103,7 +103,7 @@ router.post("/createCategory",auth , isAdmin , createCategory);
 router.get("/showAllCategories",showAllCategories)
 
 //get category page details
-router.get("/getCategoryPageDetails", categoryPageDetails)
+router.post("/getCategoryPageDetails", categoryPageDetails)
 //-----------------------------------------------------------------------------------------------------------------
 
 
