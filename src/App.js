@@ -39,14 +39,15 @@ function App() {
             <Route path='/verify-email'element={ <OpenRoute> <VerifyEmail/></OpenRoute>  }></Route>
             <Route path='/about'element={ <OpenRoute> <About/></OpenRoute>  }></Route>
             <Route path="/contact" element={<Contact />} />
+            <Route path="/catalog/:catalogName" element={<Catalog/>}/>
+
+
+
+          {/* private route */}
             <Route element={ <PrivateRoute> <Dashboard/> </PrivateRoute>} >
 
             <Route path='/dashboard/my-profile' element={  <MyProfile/>  }/> 
             <Route path="dashboard/Settings" element={<Settings />}/>
-
-            <Route path="/catalog/:catalogName" element={<Catalog/>}/>
-         
-
             {
               user?.accountType === ACCOUNT_TYPE.STUDENT && (
                 <>
@@ -55,14 +56,12 @@ function App() {
                 </>
               )
             }
-
             {
               user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
                 <>
                 <Route path="dashboard/add-course" element={<AddCourse/>}/>
                 <Route path="dashboard/my-courses" element={<MyCourses/>}/>
                 <Route path="dashboard/edit-course/:courseId" element={<EditCourse />} />
-               
                 </>
               )
             }

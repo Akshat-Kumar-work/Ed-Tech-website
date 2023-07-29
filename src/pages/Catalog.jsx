@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 import { apiConnector } from '../services/apiConnector';
 import { categories } from '../services/api';
 import { getCatalogPageData } from '../services/operations/pageAndComponentData';
+import CourseSlider from '../components/core/Catalog/CourseSlider';
+import Course_Card from '../components/core/Catalog/Course_Card';
 
 
 const Catalog = () => {
@@ -62,9 +64,9 @@ const Catalog = () => {
     <div className='text-white'>
 
           <div>
-              <p>{`Home / Catalog`} <span>{catalogPageData?.data?.data?.selectedCategory?.name}</span></p>
-              <p></p>
-              <p></p>
+              <p>{`Home / Catalog`} <span className='text-white'>{catalogPageData?.data?.selectedCategory?.name}</span></p>
+              <p>{catalogPageData?.data?.selectedCategory?.name}</p>
+              <p>{catalogPageData?.data?.selectedCategory?.description}</p>
           </div>
 
 
@@ -72,24 +74,38 @@ const Catalog = () => {
 
               {/* section 1 */}
               <div>
+                    <div>Courses to get you Started</div>
                     <div className='flex gap-x-3'>
                           <p>Most Popular</p>
                           <p>New</p>
                     </div>
-                    {/* <CourseSlider/> */}
+                    <CourseSlider Courses={catalogPageData?.data?.selectedCategory?.courses}/>
               </div>
 
               {/* section 2 */}
               <div>
-                <p>Top Courses</p>
+                <p>Top Courses in {catalogPageData?.data?.selectedCategory?.name}</p>
                 <div>
-                  {/* <CourseSlider/> */}
+                  <CourseSlider Courses={catalogPageData?.data?.differentCategory?.courses}/>
                 </div>
               </div>
 
               {/* section 3 */}
               <div>
-                    <p>Frequently Bought Together</p>
+                    <div>Frequently Bought </div>
+                    <div className='py-8'>
+
+                          <div className='grid grid-cols-1 lg:grid-cols-2'>
+
+                            {
+                              catalogPageData?.data?.mostSellingCourses?.slice(0,4).map((course,index)=>(
+                                <Course_Card course={course} key={index} Height={"h-[400px]"}/>
+                              ))
+                            }
+
+                          </div>
+
+                    </div>
               </div>
 
           </div>
