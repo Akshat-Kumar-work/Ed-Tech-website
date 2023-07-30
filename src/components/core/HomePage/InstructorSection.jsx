@@ -8,7 +8,7 @@ const InstructorSection = () => {
   return (
     <div className='mt-16'>
 
-    <div className=' flex flex-row gap-20 items-center'>
+    <div className=' flex flex-col lg:flex-row gap-20 items-center'>
 
             <div className=' w-[50%] '>
                 <img src={instructorImg} className=' shadow-white' alt='instructorImg'></img>

@@ -41,7 +41,7 @@ const ExploreMore = () => {
 
             {/* tab section */}
 
-            <div className=' flex  justify-center bg-richblack-800  rounded-full mt-6 w-fit mb-5 border-richblack-100'>
+            <div className=' hidden lg:flex  justify-center bg-richblack-800  rounded-full mt-6 w-fit mb-5 border-richblack-100 '>
                 {
                     tabsName.map( (element, index)=>{
                         return(

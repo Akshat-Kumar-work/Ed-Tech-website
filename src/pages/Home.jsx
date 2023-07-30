@@ -110,7 +110,7 @@ const Home = () => {
     {/*section 2*/}
     <div  className=' bg-pure-greys-5 text-richblack-700 '>
 
-    <div className='homepage_bg h-[310px]'>
+    <div className='homepage_bg h-[310px] '>
 
       <div className=' w-11/12 max-w-maxContent flex items-center gap-5 mx-auto flex-col '>
         <div className=' h-[150px]'></div>
@@ -129,9 +129,9 @@ const Home = () => {
 
     </div>
 
-    <div className=' mx-auto w-11/12 max-w-maxContent flex flex-col items-center justify-between gap-7'>
+    <div className=' mx-auto w-11/12 max-w-maxContent flex flex-col items-center justify-between gap-7 flex-wrap'>
 
-      <div className=' flex flex-row gap-5 mt-[95px] mb-[95px]'>
+      <div className=' flex flex-row gap-5 mt-[95px] mb-[95px]  '>
 
       <div className=' text-4xl font-semibold w-[45%]'>
         Get the Skills You need for a <HighlighText text={"Job that is in demand"}></HighlighText>

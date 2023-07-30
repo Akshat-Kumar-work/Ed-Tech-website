@@ -28,10 +28,10 @@ const timeline =[{
 
 const TimelineSection = () => {
   return (
-    <div className='flex flex-row gap-15 items-center ' >
+    <div className='flex flex-col lg:flex-row gap-15 items-center ' >
 
     {/* left box */}
-        <div className=' w-[45%] flex flex-col gap-11'>
+        <div className=' w-[45%] flex flex-col gap-11 '>
 
             <div>{
                 timeline.map( (element , index )=>{
@@ -59,7 +59,7 @@ const TimelineSection = () => {
 
         <img src={timelineImage} className=' shadow-white object-cover rounded-lg h-fit' alt='timelineImg'></img>
         
-        <div className='absolute bg-caribbeangreen-700 flex text-white uppercase py-7 left-[50%] translate-x-[-50%] translate-y-[-50%]'>
+        <div className='absolute bg-caribbeangreen-700 lg:flex text-white uppercase py-7 left-[50%] translate-x-[-50%] translate-y-[-50%] hidden'>
 
             <div className=' flex flex-row gap-5 items-center border-r border-caribbeangreen-300 pl-2'>
                 <p className=' text-3xl font-bold'>10</p>

@@ -50,10 +50,10 @@ const Navbar = () => {
       location.pathname !== "/" ? "bg-richblack-800" : ""
     } transition-all duration-200`}>
 
-    <div className="flex w-11/12 max-w-maxContent items-center justify-between">
+    <div className="flex  w-11/12 max-w-maxContent items-center justify-between">
 
             <Link to="/">
-              <img src={logo} width={160} height={42}/>
+              <img src={logo} width={160} height={42} className='lg:block hidden'/>
             </Link>
 
             <nav>
@@ -108,7 +108,7 @@ const Navbar = () => {
                         matchRoute(link?.path)
                           ? "text-yellow-25"
                           : "text-richblack-25"
-                      }`}
+                      } `}
                     >
                       {link.title}
                     </p>
@@ -122,7 +122,7 @@ const Navbar = () => {
 
             {/* login signup dashboard */}
 
-            <div className=' flex gap-x-4 items-center'>
+            <div className=' flex  gap-x-4 items-center'>
 
            {
             user && user?.accountType !== "Instructor" && (
@@ -151,7 +151,7 @@ const Navbar = () => {
            {
             token === null && (
               <Link to="/signup">
-                <button className=' border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100 rounded-md' >
+                <button className=' lg:block hidden border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100 rounded-md' >
                  Sign Up
                 </button>
               </Link>
