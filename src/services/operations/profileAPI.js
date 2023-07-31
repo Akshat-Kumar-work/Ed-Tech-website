@@ -12,11 +12,13 @@ export async  function getEnrolledCourses(token){
             //sending token in header
             Authorization: `Bearer ${token}`,
         })
+        console.log(response)
  
         if(!response.data.success){
             throw new Error(response.data.message)
         }
         result = response.data.data
+        console.log(result)
     }
     catch(error){
         console.log("GET_USER_ENROLLED_COURSES_API API ERROR............", error)
