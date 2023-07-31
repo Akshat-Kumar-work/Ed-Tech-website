@@ -181,6 +181,12 @@ const enrollStudents = async(courses,userId , res)=>{
 }
 
 
+//payment successfull email to user
+exports.sendPaymentSuccessEmail = async(req,res)=>{
+    const {orderId,paymentId,amount}=req.body;
+    const userId = req.user.id;
+}
+
 
 
 
