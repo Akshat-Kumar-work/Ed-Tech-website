@@ -7,12 +7,15 @@ import { removeFromCart } from '../../../../slices/cartSlice';
 
 const RenderCartCourses = () => {
     const{cart}= useSelector( (state)=>state.cart);
+  
     const dispatch = useDispatch();
 
   return (
     <div>
             {
                 cart.map( (course,index)=>{
+                   
+                  return(
                     <div key={course._id}
                      className={`flex w-full flex-wrap items-start justify-between gap-6 ${
             index !== cart.length - 1 && "border-b border-b-richblack-400 pb-6"
@@ -48,6 +51,7 @@ const RenderCartCourses = () => {
 
                         </div>
                     </div>
+                  )
                 })
             }
     </div>

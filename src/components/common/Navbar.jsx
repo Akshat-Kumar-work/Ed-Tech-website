@@ -129,7 +129,7 @@ const Navbar = () => {
               <Link to="/dashboard/cart" className='relative'>
                 <AiOutlineShoppingCart className='text-white'/>{
                   totalItems > 0 && (
-                    <span>
+                    <span className='text-white'>
                       {totalItems}
                     </span>
                   )
