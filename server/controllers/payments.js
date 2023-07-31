@@ -2,9 +2,11 @@ const {instance} = require("../config/Razorpay");
 const Course = require("../models/course");
 const User = require("../models/user");
 const mailSender = require("../utils/mailSender");
-const {courseEnrollementEmail} = require("../mail/templates/courseEnrollmentEmail");
+const {courseEnrollmentEmail} = require("../mail/templates/courseEnrollmentEmail");
 const { default: mongoose } = require("mongoose");
-const { default: ReactStars } = require("react-stars");
+const {paymentSuccessEmail} = require("../mail/templates/paymentSuccessEmail");
+const crypto = require("crypto");
+
 
 
 
@@ -92,6 +94,7 @@ exports.capturePayment = async (req,res)=>{
 //payment verification
 //jo razor pay se signature aya hai aur jo signature hmare pass hai vo same hai toh successfull payment hai
 exports.verifyPayment = async(req,res)=>{
+    console.log(req.body)
     //fetchind details from req
     const razorpay_order_id = req.body?.razorpay_order_id;
     const razorpay_payment_id = req.body?.razorpay_payment_id;
@@ -163,8 +166,8 @@ const enrollStudents = async(courses,userId , res)=>{
             }
     
             //send mail to user
-            const emailResponse = await mailSender( enrollStudents.email , `Successfully Enrolled into ${enrolledCourse.courseName}`,
-            courseEnrollementEmail(enrolledCourse.courseName,`${enrolledStudent.firstName}`));
+            const emailResponse = await mailSender( enrolledStudent.email , `Successfully Enrolled into ${enrolledCourse.courseName}`,
+            courseEnrollmentEmail(enrolledCourse.courseName,`${enrolledStudent.firstName}`));
             console.log("email sent successfully",emailResponse);
 
                 }
@@ -183,8 +186,33 @@ const enrollStudents = async(courses,userId , res)=>{
 
 //payment successfull email to user
 exports.sendPaymentSuccessEmail = async(req,res)=>{
+
+   
+
     const {orderId,paymentId,amount}=req.body;
+
     const userId = req.user.id;
+
+    if(!orderId || !paymentId || !amount || !userId){
+        return res.status(400).json({success:false,message:"Please provide all fields"});
+    }
+
+     //student ko dhundo
+     const enrolledStudents = await User.findById(userId);
+
+    try{
+        //search student
+        const enrolledStudent = await User.findById(userId);
+        await mailSender(
+            enrolledStudents.email,
+            `Payment Recieved`,
+            paymentSuccessEmail(`${enrolledStudent.firstName}`,amount/100,orderId,paymentId)
+        )
+    }
+    catch(err){
+        console.log("error while sending payment success email",err);
+        return res.status(500).json({success:false,message:"could not send email"});
+    }
 }
 
 
