@@ -128,7 +128,7 @@ async function verifyPayment(bodyData,token , navigate,dispatch){
             throw new Error(response.data.message);
         }
         toast.success("payment Successful")
-        navigate("/dashboard/enrolled_courses");
+        navigate("/dashboard/enrolled-courses");
         dispatch(resetCart());
     }
     catch(err){

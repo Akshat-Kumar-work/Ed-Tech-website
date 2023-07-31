@@ -48,7 +48,7 @@ router.post("/createCourse",auth ,isInstructor ,createCourse);
 router.get("/getAllCourses",getAllCourses);
 
 //get details of specific course
-router.get("/getCourseDetails",getCourseDetails);
+router.post("/getCourseDetails",getCourseDetails);
 
 // Get Details for a Specific Courses
 router.post("/getFullCourseDetails", auth, getFullCourseDetails)
@@ -57,7 +57,7 @@ router.post("/getFullCourseDetails", auth, getFullCourseDetails)
 router.post("/editCourse", auth, isInstructor, editCourse)
 
 // Get all Courses Under a Specific Instructor
-router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses)
+router.post("/getInstructorCourses", auth, isInstructor, getInstructorCourses)
 
 // Delete a Course
 router.delete("/deleteCourse", deleteCourse)

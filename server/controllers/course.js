@@ -135,6 +135,7 @@ exports.getCourseDetails = async(req ,res)=>{
 
 try{
     const {courseId} = req.body;
+    
     console.log("course id ",courseId)
 
     if(!courseId){
@@ -305,7 +306,7 @@ exports.getFullCourseDetails = async (req, res) => {
     try {
       
       const  {courseId}  = req.body
- 
+      
       const userId = req.user.id
 
       const courseDetails = await Course.findOne({
