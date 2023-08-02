@@ -7,7 +7,8 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 const mailSender = require("../utils/mailSender");
-const {passwordUpdated} = require("../mail/templates/passwordUpdate")
+const {passwordUpdated} = require("../mail/templates/passwordUpdate");
+
 
 //to send otp for sign up , handler
  exports.sendOTP = async(req,res)=>{
@@ -120,7 +121,7 @@ exports.signUp = async (req ,res)=>{
             //invalid otp
             return res.status(400).json({
                 success:false,
-                message:"invalid otp"
+                message:"invalid otp",
             })
         }
         //hash password
@@ -151,7 +152,8 @@ exports.signUp = async (req ,res)=>{
         console.log("error while signing up",err)
        return  res.status(500).json({
             success:false,
-            message:"sorry unable to sign up now"
+            message:"sorry unable to sign up now",
+            error:err
         })
     }
         
@@ -222,7 +224,8 @@ catch(err){
      console.log("error while login ",err)
      return res.status(500).json({
         success:false,
-        message:"unable to login "
+        message:"unable to login ",
+        error:err
      })
 }
 }
