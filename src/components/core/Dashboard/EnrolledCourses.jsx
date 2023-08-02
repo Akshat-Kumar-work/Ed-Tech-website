@@ -3,6 +3,7 @@ import {getEnrolledCourses} from "../../../services/operations/profileAPI"
 import { useSelector } from 'react-redux'
 import ProgressBar from '@ramonak/react-progress-bar';
 import { useNavigate } from 'react-router-dom';
+import { catalogData } from '../../../services/api';
 
 
 
@@ -15,7 +16,9 @@ const EnrolledCourses = () => {
     const getEnrolledCourse= async()=>{
         try{
             const response = await getEnrolledCourses(token);
+            console.log("get enrolled course response",response)
             setEnrolledCourses(response)
+           
         }
         catch(error){
             console.log("unable to fetch enrolled courses")
@@ -26,7 +29,7 @@ const EnrolledCourses = () => {
         getEnrolledCourse()
     },[])
 
-    console.log(enrolledCourses)
+
 
   return (
     <div >
@@ -51,6 +54,7 @@ const EnrolledCourses = () => {
                     {/* cards */}
                     {
                         enrolledCourses.map( (course,index , arr)=>{
+                        
                            
                           return(  <div  className={`flex items-center border border-richblack-700 ${
                 index === arr.length - 1 ? "rounded-b-lg" : "rounded-none"

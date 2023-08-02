@@ -1,6 +1,8 @@
 const Profile = require("../models/profile");
 const {ImageUploaderToCloudinary} = require("../utils/imageUploader")
 const User = require("../models/user")
+const { convertSecondsToDuration } = require("../utils/convertSecondsToDuration");
+const CourseProgress = require("../models/courseProgress")
 
 //update profile
 exports.updateProfile = async (req ,res)=>{
@@ -140,19 +142,77 @@ exports.getEnrolledCourses = async (req, res) => {
       const userDetails = await User.findOne({
         _id: userId,
       })
-        .populate("courses")
+      .populate({
+        path: "courses",
+        populate: {
+        path: "courseContent",
+        populate: {
+          path: "subSection",
+        },
+        },
+      })
         .exec()
-      if (!userDetails) {
+        
+
+
+  
+      let  userDetail = userDetails.toObject()
+
+        var SubsectionLength = 0;
+
+        for (var i = 0; i < userDetail.courses.length; i++) {
+
+        let totalDurationInSeconds = 0
+        SubsectionLength = 0
+
+
+        for (var j = 0; j < userDetail.courses[i].courseContent.length; j++) {
+          totalDurationInSeconds += userDetail.courses[i].courseContent[
+          j
+          ].subSection.reduce((acc, curr) => acc + parseInt(curr.timeDuration), 0)
+          userDetail.courses[i].totalDuration = convertSecondsToDuration(
+          totalDurationInSeconds
+          )
+          SubsectionLength +=
+          userDetail.courses[i].courseContent[j].subSection.length
+        }
+
+
+        let courseProgressCount = await CourseProgress.findOne({
+          courseID: userDetail.courses[i]._id,
+          userId: userId,
+        })
+
+        courseProgressCount = courseProgressCount?.completedVideos.length
+
+        if (SubsectionLength === 0) {
+          userDetail.courses[i].progressPercentage = 100
+        } else {
+          // To make it up to 2 decimal point
+          const multiplier = Math.pow(10, 2)
+          userDetail.courses[i].progressPercentage =
+          Math.round(
+            (courseProgressCount / SubsectionLength) * 100 * multiplier
+          ) / multiplier
+        }
+        }
+     
+
+
+
+      if (!userDetail) {
         return res.status(400).json({
           success: false,
-          message: `Could not find user with id: ${userDetails}`,
+          message: `Could not find user with id: ${userDetail}`,
         })
       }
+      console.log(userDetail)
       return res.status(200).json({
         success: true,
-        data: userDetails.courses,
+        data: userDetail.courses,
       })
     } catch (error) {
+      console.log(error)
       return res.status(500).json({
         success: false,
         message: error.message,

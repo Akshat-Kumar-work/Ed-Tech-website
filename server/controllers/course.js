@@ -153,7 +153,7 @@ try{
                                                 //rating and reviews ko bhi populate kro
                                                 .populate("ratingAndReviews")
                                                 //course content ko populate kro aur uske andar jo subsection hai usko bhi populate kro
-                                                .populate( { path:"courseContent",populate:{path:"subSection"}})
+                                                .populate( { path:"courseContent",populate:{path:"subSection", select: "-videoUrl",}})
                                                 .exec()
 
     if(!courseDetails){
@@ -163,10 +163,22 @@ try{
         })
     }
 
+    //change
+    let totalDurationInSeconds = 0
+    courseDetails.courseContent.forEach((content) => {
+      content.subSection.forEach((subSection) => {
+        const timeDurationInSeconds = parseInt(subSection.timeDuration)
+        totalDurationInSeconds += timeDurationInSeconds
+      })
+    })
+
+    const totalDuration = convertSecondsToDuration(totalDurationInSeconds)
+
     return res.status(200).json({
         success:true,
         message:"course details fetched succesfully",
-        courseDetails
+        courseDetails,
+        totalDuration
     })
 }
 catch(err){
@@ -305,7 +317,10 @@ exports.deleteCourse = async (req, res) => {
 exports.getFullCourseDetails = async (req, res) => {
     try {
       
-      const  {courseId}  = req.body
+   
+     const {courseId} = req.body
+    
+      console.log("course id ",courseId)
       
       const userId = req.user.id
 
@@ -350,6 +365,7 @@ exports.getFullCourseDetails = async (req, res) => {
       //     message: `Accessing a draft course is forbidden`,
       //   });
       // }
+
   
       let totalDurationInSeconds = 0
       courseDetails.courseContent.forEach((content) => {
@@ -366,8 +382,8 @@ exports.getFullCourseDetails = async (req, res) => {
         data: {
           courseDetails,
           totalDuration,
-          completedVideos: courseProgressCount?.completedVideo
-            ? courseProgressCount?.completedVideo
+          completedVideos: courseProgressCount?.completedVideos
+            ? courseProgressCount?.completedVideos
             : [],
         },
       })
