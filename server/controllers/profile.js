@@ -2,7 +2,8 @@ const Profile = require("../models/profile");
 const {ImageUploaderToCloudinary} = require("../utils/imageUploader")
 const User = require("../models/user")
 const { convertSecondsToDuration } = require("../utils/convertSecondsToDuration");
-const CourseProgress = require("../models/courseProgress")
+const CourseProgress = require("../models/courseProgress");
+const Course = require("../models/course")
 
 //update profile
 exports.updateProfile = async (req ,res)=>{
@@ -219,3 +220,47 @@ exports.getEnrolledCourses = async (req, res) => {
       })
     }
 };
+
+
+
+exports.instructorDashboard = async(req,res)=>{
+  try{
+
+    const courseDetails = await Course.find({instructor : req.user.id});
+
+    if(!courseDetails){
+      return res.status(404).json({
+        message:"instructor not found"
+      })
+    }
+
+    
+
+    const courseData = courseDetails.map( (course)=>{
+      const totalStudentsEnrolled = course.studentsEnrolled.length
+      const totalAmountGenerated = totalStudentsEnrolled * course.price;
+
+      //create a new object with additional fields
+      const courseDataWithStats = {
+        _id:course._id,
+        courseName:course.Name,
+        courseDescription : course.courseDescription,
+        totalStudentsEnrolled,
+        totalAmountGenerated
+      }
+      return courseDataWithStats
+    })
+
+ 
+   return res.status(200).json({
+      courses:courseData
+    })
+  }
+  catch(err){
+    console.log(err)
+    return res.status(500).json({
+      success:false,
+      message:"internal server error"
+    })
+  }
+}
