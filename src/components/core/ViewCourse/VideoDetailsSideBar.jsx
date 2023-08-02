@@ -57,7 +57,7 @@ const VideoDetailsSideBar = ( {setReviewModal}) => {
                                     </div>
 
                                     
-                                        <IconBtn customClasses={"ml-auto"} text="Add Review"   onclick={() => setReviewModal(true) }/>
+                                        <IconBtn customClasses={"ml-auto"} text="Add Review"   onclick={() => setReviewModal(true)}/>
                                    
 
                              </div>

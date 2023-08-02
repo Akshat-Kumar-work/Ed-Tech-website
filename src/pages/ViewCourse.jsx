@@ -60,9 +60,13 @@ const ViewCourse = () => {
                   
                 </div>
 
-        </div>
 
-        {reviewModal && <CourseReviewModal setReviewModal={setReviewModal}/>}
+                
+              
+
+        </div>
+        {reviewModal &&  (<CourseReviewModal setReviewModal={setReviewModal}/>) }
+        
 
     </>
   )

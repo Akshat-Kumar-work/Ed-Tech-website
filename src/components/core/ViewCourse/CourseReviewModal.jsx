@@ -7,6 +7,7 @@ import { createRating } from '../../../services/operations/courseDetailsAPI';
 import { RxCross2 } from "react-icons/rx"
 
 const CourseReviewModal = ({setReviewModal}) => {
+    
 
     const {user} = useSelector( (state)=>state.profile);
     const {token} = useSelector( (state)=>state.auth);
@@ -29,12 +30,13 @@ const CourseReviewModal = ({setReviewModal}) => {
     }
 
   return (
+
     <div className="fixed inset-0 z-[1000] !mt-0 grid h-screen w-screen place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
             <div className="my-10 w-11/12 max-w-[700px] rounded-lg border border-richblack-400 bg-richblack-800">
                 {/* Modal header */}
                 <div className="flex items-center justify-between rounded-t-lg bg-richblack-700 p-5">
                     <p className="text-xl font-semibold text-richblack-5">Add Review</p>
-                    <button onClick={setReviewModal(false)}>
+                    <button onClick={()=>setReviewModal(false)}>
                     <RxCross2 className="text-2xl text-richblack-5" />
                     </button>
                 </div>
@@ -43,7 +45,7 @@ const CourseReviewModal = ({setReviewModal}) => {
                 <div className="p-6">
 
                     <div className="flex items-center justify-center gap-x-4">
-                        <img src={user?.image} alt='user img' className='aspect-square w-[50px] rounded-full object-cover'/>
+                        <img src={user?.img} alt='user img' className='aspect-square w-[50px] rounded-full object-cover'/>
                     </div>
                     <div>
                         <p className="font-semibold text-richblack-5">{user?.firstName} {user?.lastName}</p>
@@ -57,7 +59,7 @@ const CourseReviewModal = ({setReviewModal}) => {
 
                         <ReactStars count={5} onChange={ratingChanged} size={24} activeColor="#ffd700"/>
 
-                        <div className="flex w-11/12 flex-col space-y-2">
+                        <div className="flex w-11/12 flex-col space-y-2 text-white">
                             <label htmlFor='courseExperience'>
                                 Add Your Experience <sup className="text-pink-200">*</sup>
                             </label>
