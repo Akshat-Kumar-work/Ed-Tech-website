@@ -194,10 +194,11 @@ catch(err){
 // Edit Course Details
 exports.editCourse = async (req, res) => {
     try {
+      console.log("inside edit course")
       const { courseId } = req.body
       const updates = req.body
       const course = await Course.findById(courseId)
-  
+      
       if (!course) {
         return res.status(404).json({ error: "Course not found" })
       }
@@ -320,12 +321,13 @@ exports.getFullCourseDetails = async (req, res) => {
    
      const {courseId} = req.body
     
-      console.log("course id ",courseId)
       
       const userId = req.user.id
 
+   
+
       const courseDetails = await Course.findOne({
-        _id: courseId,
+        _id:  courseId
       })
         .populate({
           path: "instructor",
@@ -343,6 +345,7 @@ exports.getFullCourseDetails = async (req, res) => {
         })
         .exec()
 
+     
        
   
       let courseProgressCount = await CourseProgress.findOne({

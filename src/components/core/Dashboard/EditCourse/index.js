@@ -19,7 +19,7 @@ export default function EditCourse() {
   useEffect(() => {
     ;(async () => {
       setLoading(true)
-      const result = await getFullDetailsOfCourse({courseId}, token)
+      const result = await getFullDetailsOfCourse(courseId, token)
       if (result?.courseDetails) {
         dispatch(setEditCourse(true))
         dispatch(setCourse(result?.courseDetails))

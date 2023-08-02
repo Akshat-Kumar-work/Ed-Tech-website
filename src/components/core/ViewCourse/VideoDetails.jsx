@@ -65,7 +65,7 @@ console.log(filteredVideoData)
       (data)=>data._id === subSectionId
     )
 
-    if(currentSectionIndex === 0 && currentSubSectionIndex){
+    if(currentSectionIndex === 0 && currentSubSectionIndex===0){
       return true;
     }
     else{
@@ -100,7 +100,7 @@ console.log(filteredVideoData)
       (data)=>data._id === sectionId
     )
 
-    const noOfSubSections = courseSectionData[currentSectionIndex].subSection.length;
+    const noOfSubSections = courseSectionData[currentSectionIndex]?.subSection.length;
 
     const currentSubSectionIndex = courseSectionData[currentSectionIndex].subSection.findIndex(
       (data)=>data._id === subSectionId
@@ -108,7 +108,7 @@ console.log(filteredVideoData)
 
     if(currentSubSectionIndex !== noOfSubSections -1){
       //same section k andar aur subsection hai usme jao
-      const nextSubSectionId = courseSectionData[currentSectionIndex].subSection[currentSectionIndex +1]._id;
+      const nextSubSectionId = courseSectionData[currentSectionIndex].subSection[currentSubSectionIndex +1]._id;
       //is video par jana
       navigate(`/view-course/${courseId}/section/${sectionId}/sub-section/${nextSubSectionId}`)
     }
@@ -126,18 +126,18 @@ console.log(filteredVideoData)
   const goToPreviousVideo = ()=>{
     
     const currentSectionIndex = courseSectionData.findIndex(
-      (data)=>data._id === sectionId
+      (data)=>data?._id === sectionId
     )
 
     const noOfSubSections = courseSectionData[currentSectionIndex].subSection.length;
 
     const currentSubSectionIndex = courseSectionData[currentSectionIndex].subSection.findIndex(
-      (data)=>data._id === subSectionId
+      (data)=>data?._id === subSectionId
     )
 
     if(currentSubSectionIndex !== 0){
       //same section ki previous video id
-      const prevSubSectionId = courseSectionData[currentSectionIndex].subSection[currentSubSectionIndex-1]._id;
+      const prevSubSectionId = courseSectionData[currentSectionIndex]?.subSection[currentSubSectionIndex-1]?._id;
       //ess video par chle jao
       navigate(`/view-course/${courseId}/section/${sectionId}/sub-section/${prevSubSectionId}`)
     }
