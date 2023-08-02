@@ -19,6 +19,9 @@ const { createSubSection , updateSubSection , deleteSubSection } = require("../c
 
 //rating controller
 const {createRating , getAverageRating , getAllRating} = require("../controllers/ratingAndReview")
+
+//course progress
+const {updateCourseProgress} = require("../controllers/CourseProgress")
 //-----------------------------------------------------------------------------------------------------------------
 
 
@@ -85,6 +88,11 @@ router.put("/updateSubsection",auth , isInstructor , updateSubSection);
 
 //delete subsection
 router.delete("/deleteSubSection",auth , isInstructor , deleteSubSection);
+
+
+
+
+router.post("/updateCourseProgress",auth , isStudent , updateCourseProgress);
 
 
 //-----------------------------------------------------------------------------------------------------------------

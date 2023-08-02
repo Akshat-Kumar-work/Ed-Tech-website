@@ -3,7 +3,7 @@ import {getEnrolledCourses} from "../../../services/operations/profileAPI"
 import { useSelector } from 'react-redux'
 import ProgressBar from '@ramonak/react-progress-bar';
 import { useNavigate } from 'react-router-dom';
-import { catalogData } from '../../../services/api';
+
 
 
 
