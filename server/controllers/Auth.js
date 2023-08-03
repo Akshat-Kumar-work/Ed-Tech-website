@@ -185,10 +185,9 @@ if(!User){
 
 //if user exist 
 //matching hash password
-const passwordVerfication = await bcrypt.compare( password , User.password);
 
 //if password matched
-if(passwordVerfication){
+if(await bcrypt.compare( password , User.password)){
     const payload = {
         email : User.email,
         id: User.id,
