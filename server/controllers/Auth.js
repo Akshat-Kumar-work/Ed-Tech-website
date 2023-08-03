@@ -194,8 +194,8 @@ if(await bcrypt.compare( password , User.password)){
         accountType:User.accountType
     }
     //jwt token ko generate kro
- const token = jwt.sign(payload , process.env.JWT_SECRET,{
-        expiresIn:"2h" });
+ const token = jwt.sign(payload , process.env.JWT_secret,{
+        expiresIn:"24h" });
 
 		// Save token to user document in database
         User.token = token;
