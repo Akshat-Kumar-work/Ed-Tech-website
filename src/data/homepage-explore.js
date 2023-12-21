@@ -3,24 +3,24 @@ export const HomePageExplore = [
 
     //zero index
     {
-        tag: 'Free',
+        tag: 'Recent',
         courses : [
             {
-                heading : "Learn HTML",
-                description : "This course covers the basic concepts of HTML including creating and structuring web pages, adding text, links, images, and more.",
+                heading : "Learn Mern Stack",
+                description : "This course covers the basic concepts of mern stack including creating and structuring web pages, adding text, links, images, and more.",
                 level : 'Beginner',
                 lessionNumber : 6
             },
             {
-                heading : "Learn CSS",
-                description : "This course explores advanced topics in HTML5 and CSS3, including animations, transitions, and layout techniques",
-                level : 'Beginner',
+                heading : "Learn Cpp",
+                description : "This course explores advanced topics in C++, including various data structure and algorithm",
+                level : 'Advance',
                 lessionNumber : 6
             },
             {
-                heading : "Responsive Web design",
-                description : "This course teaches responsive web design techniques, allowing web pages to adapt to different devices and screen sizes",
-                level : 'Beginner',
+                heading : "Learn Java",
+                description : "This course explores advanced topics in C++, including various data structure and algorithm",
+                level : 'Advance',
                 lessionNumber : 6
             },
         ]
@@ -29,7 +29,7 @@ export const HomePageExplore = [
 
     //1st index
     {
-        tag: 'New to coding',
+        tag: "For Beginner's",
         courses : [
             {
                 heading : "HTML",
@@ -41,20 +41,20 @@ export const HomePageExplore = [
                 heading : "CSS",
                 description : "This course explores advanced topics in HTML5 and CSS3, including animations, transitions, and layout techniques",
                 level : 'Beginner',
-                lessionNumber : 6
+                lessionNumber : 7
             },
             {
                 heading : "Responsive ",
                 description : "This course teaches responsive web design techniques, allowing web pages to adapt to different devices and screen sizes",
                 level : 'Beginner',
-                lessionNumber : 6
+                lessionNumber : 8
             },
         ]
     },
 
     //2nd index
     {
-        tag: 'Most popular',
+        tag: "People Choice",
         courses : [
             {
                 heading : "Java",
@@ -81,7 +81,7 @@ export const HomePageExplore = [
 
     //3rd index
     {
-        tag: 'Skills paths',
+        tag: 'Desired path',
         courses : [
             {
                 heading : "Flask",

@@ -371,7 +371,7 @@ exports.sendPaymentSuccessEmail = async(req,res)=>{
 //     const signature = req.headers["x-razorpay-signature"];
 
 //     //eslie hum bhi apne webhooksecret ko same algo se hash krdengy jis se hum use match kar pae
-//     //hashing the webhooksecret using Hmac algo or function present in crypto library 
+//     //hashing the webhooksecret using Hmac  function present in crypto library 
 //     //here we have to pass the algo -> sha256 by which we have to hash it,and the value to be hashed
 //    const shasum = crypto.createHmac( "sha256" , webhooksecret);
 //    //converting shasum into string format

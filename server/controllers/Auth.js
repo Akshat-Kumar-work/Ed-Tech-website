@@ -10,7 +10,7 @@ const mailSender = require("../utils/mailSender");
 const {passwordUpdated} = require("../mail/templates/passwordUpdate");
 
 
-//to send otp for sign up , handler
+//to send otp for sign up , handler -> basically to generate otp not to send 
  exports.sendOTP = async(req,res)=>{
     try{
 
@@ -124,11 +124,11 @@ exports.signUp = async (req ,res)=>{
                 message:"invalid otp",
             })
         }
-        //hash password
+        //hash password using bcrypt 
         const hashedPassword = await bcrypt.hash(password, 10);
 
         
-        //agar approved instructor hai toh approved ko false krdo aur agar instructor nahi hai toh usko true krdo
+        //agar  instructor hai toh approved ko false krdo aur agar instructor nahi hai toh usko true krdo
 		let approved = "";
 		approved === "Instructor" ? (approved = false) : (approved = true);
 
@@ -193,7 +193,7 @@ if(await bcrypt.compare( password , User.password)){
         id: User.id,
         accountType:User.accountType
     }
-    //jwt token ko generate kro
+    //genrating jwt token
  const token = jwt.sign(payload , process.env.JWT_secret,{
         expiresIn:"24h" });
 

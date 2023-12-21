@@ -33,6 +33,7 @@ const CourseBuilderForm = () => {
 
     setLoading(true);
 
+    //if editSectionName is true
     if(editSectionName){
       //we are  editing section name
      let result = await updateSection({
@@ -45,7 +46,7 @@ const CourseBuilderForm = () => {
   }
     }
 
-
+    //creating new section
     else{
      let result = await createSection( {sectionName : data.sectionName , courseId:course._id},token );
          //update values

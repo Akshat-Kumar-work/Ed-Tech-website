@@ -5,10 +5,10 @@ import { HiUsers } from "react-icons/hi";
 import { ImTree } from "react-icons/im";
 
 const tabsName=[
-    "Free",
-    "New to coding",
-    "Most popular",
-    "Skills paths",
+    "Recent",
+    "For Beginner's",
+    "People Choice",
+    "Desired path",
     "Career paths",
 ]
 
@@ -33,11 +33,11 @@ const ExploreMore = () => {
         setCurrentCard(result[0].courses[0].heading)
     };
   return (
-    <div className=' flex flex-col items-center mb-5'>
+    <div className=' flex flex-col items-center mb-5 mt-5'>
 
-            <div className=' text-4xl font-semibold text-center'>Unlock the <HiglightedText text={"Power of Code"} />  </div>
+            <div className=' text-4xl font-semibold text-center'>Smart Learning <HiglightedText text={"Bright Future"} />  </div>
 
-            <div className=' text-richblack-300 text-center text-lg  mt-3'>Learn to Build anything you can imagine</div>
+            <div className=' text-richblack-300 text-center text-lg  mt-3'>Tomorrow's leaders, today's learners</div>
 
             {/* tab section */}
 
@@ -70,7 +70,7 @@ const ExploreMore = () => {
 
                                 <div key={index} className={`w-[360px] lg:w-[30%] ${
                             currentCard === SelectedTABcourse.heading
-                     ? "bg-white shadow-[12px_12px_0_0] shadow-yellow-50"
+                     ? " bg-pure-greys-5 shadow-[12px_12px_0_0] shadow-blue-500"
                             : "bg-richblack-800"
                              } text-richblack-25 h-[300px] box-border cursor-pointer`}
                                 onClick={()=>setCurrentCard( SelectedTABcourse.heading)}

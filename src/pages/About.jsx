@@ -33,10 +33,10 @@ const About = () => {
 
           <div className="sm:h-[70px] lg:h-[150px]"></div>
 
-          <div className="absolute bottom-0 left-[50%] grid w-[100%] translate-x-[-50%] translate-y-[30%] grid-cols-3 gap-3 lg:gap-5">
-            <img src={BannerImage1} alt="" />
+          <div className="hidden absolute bottom-0 left-[50%] sm:grid w-[100%] translate-x-[-50%] translate-y-[30%] grid-cols-3 gap-3 lg:gap-5 ">
+            <img src={BannerImage1} alt="" className='w-[400px] h-[235px]'/>
             <img src={BannerImage2} alt="" />
-            <img src={BannerImage3} alt="" />
+            <img src={BannerImage3} alt="" className='w-[360px] h-[235px]' />
           </div>
           
         </div>
@@ -79,7 +79,7 @@ const About = () => {
       </div>
       {/* founding Story right box */}
       <div>
-        <img src={FoundingStory} alt='foundingstoryimg' className="shadow-[0_0_20px_0] shadow-[#FC6767]"/>
+        <img src={FoundingStory} alt='foundingstoryimg' className="shadow-[0_0_20px_0] shadow-[#FC6767] w-[80%] "/>
       </div>
 
     </div>

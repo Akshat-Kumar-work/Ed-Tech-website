@@ -31,7 +31,7 @@ import Instructor from './components/core/Dashboard/InstructorDashboard/Instruct
 function App() {
   const {user} = useSelector( (state)=>state.profile)
   return (
-    <div className=' min-h-screen w-screen bg-richblack-900 flex flex-col font-inter'>
+    <div className=' min-h-screen w-screen bg-richblack-800 flex flex-col font-inter'>
           <Navbar></Navbar>
           <Routes>
           

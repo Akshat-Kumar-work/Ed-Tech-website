@@ -81,7 +81,7 @@ const CourseInformationForm = () => {
   const onSubmit = async(data)=>{
   
 
-    //agar course edit hua hai
+    //agar course edit hua hai , agar edit course true hai toh 
  if(editCourse){
 
   //aur form update hua hai
@@ -91,7 +91,7 @@ const CourseInformationForm = () => {
       const currentValues = getValues();
       const formData = new FormData()
    
-//form m value update krdo
+//new form m value update krdo
       formData.append("courseId",course._id);
 
       if(currentValues.courseTitle!== course.courseName){
