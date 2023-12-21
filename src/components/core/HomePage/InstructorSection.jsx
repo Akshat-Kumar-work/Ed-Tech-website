@@ -16,7 +16,7 @@ const InstructorSection = () => {
 
             <div className=' w-[50%] flex flex-col gap-10 items-start'>
 
-                <div className=' text-4xl font-semibold w-[50%]'><HighlightText text={"Be a Freelancer"}></HighlightText></div>
+                <div className=' text-4xl font-semibold w-[50%]'><HighlightText text={"Become Freelancer"}></HighlightText></div>
 
                 <p className=' font-medium text-[16px] w-[80%] text-richblack-300'>
                 "Gain practical insights and skills tailored to your goals, ensuring success in your freelancing journey.

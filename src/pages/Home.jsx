@@ -22,14 +22,14 @@ const Home = () => {
             
 
              <div className='  text-4xl font-semibold mt-8'>
-              Code Your 
-              <HighlighText text={"Future"}/>
+              Learn to 
+              <HighlighText text={"Code"}/>
              </div>
 
 
-              {/* <div className=' mt-4 w-[90%] text-center text-lg font-bold text-richblack-500'>
-              "Empower your future with cutting-edge education. Explore a world of knowledge at your fingertips with our innovative EdTech platform, where learning meets limitless possibilities."
-              </div> */}
+              <div className=' mt-4 w-[90%] text-center text-lg font-bold text-richblack-500'>
+              Your Future 
+              </div>
 
               {/* <div className=' flex flex-row gap-7 mt-8'> 
                     <CTAButton active={true} linkto={"/signup"}> Learn More</CTAButton>
@@ -46,7 +46,7 @@ const Home = () => {
               </div>
              </Link>
              
-              <div className=' mx-3 my-12 shadow-blue-200 shadow-md'>
+              <div className=' mx-3 my-12  shadow-caribbeangreen-300 shadow-md'>
               <video muted loop autoPlay>
                   <source src={Banner} type='video/mp4'></source>
                 </video>
