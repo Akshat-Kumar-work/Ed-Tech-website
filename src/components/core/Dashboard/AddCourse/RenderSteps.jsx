@@ -13,15 +13,15 @@ const RenderSteps = () => {
   const steps = [
     {
       id:1,
-      title:"Course Information",
+      title:"About Course",
     },
     {
       id:2,
-      title:"Course Builder",
+      title:"Course Content",
     },
     {
       id:3,
-      title:"Publish"
+      title:"Publish It"
     }
   ]
   return (

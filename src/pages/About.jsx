@@ -24,10 +24,8 @@ const About = () => {
             Driving Innovation in Online Education for a
             <HighlightText text={"Brighter Future"} />
             <p className="mx-auto mt-3 text-center text-base font-medium text-richblack-300 lg:w-[95%]">
-              Studynotion is at the forefront of driving innovation in online
-              education. We're passionate about creating a brighter future by
-              offering cutting-edge courses, leveraging emerging technologies,
-              and nurturing a vibrant learning community.
+            "Empower your learning journey with our cutting-edge EdTech platform. Explore interactive courses, personalized assessments, and innovative tools designed to enhance your education experience. Join a community of learners dedicated to unlocking their full potential. 
+            Embrace the future of education with us!"
             </p>
           </header>
 
@@ -64,33 +62,38 @@ const About = () => {
       <div className="my-24 flex lg:w-[50%] flex-col gap-10">
 
         <h1 className="bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCB045] bg-clip-text text-4xl font-semibold text-transparent lg:w-[70%] ">
-          Our Founding Story
+          Our Story
         </h1>
-        <p className="text-base font-medium text-richblack-300 lg:w-[95%]">Our e-learning platform was born out of a shared vision and passion for transforming education.
-         It all began with a group of educators, technologists, and lifelong learners who recognized the need for accessible,
-         flexible, and high-quality learning opportunities in a rapidly evolving digital world.</p>
+        <p className="text-base font-medium text-richblack-300 lg:w-[95%]">In the heart of my academic journey as a BTech student, 
+        a passion for technology and a thirst for knowledge propelled me towards mastering the intricacies of the MERN stack. Through three enriching internships and a rewarding freelance project, I honed my skills and gained practical insights into the dynamic world of web development.
+         Inspired by the transformative potential of technology, the vision for my personal project began to take shape.</p>
 
          <p className="text-base font-medium text-richblack-300 lg:w-[95%]">
-         As experienced educators ourselves, we witnessed firsthand the limitations and challenges of traditional education systems. 
-         We believed that education should not be confined to the walls of a classroom or restricted by geographical boundaries. We envisioned a
-          platform that could bridge these gaps and empower individuals from all walks of life to unlock their full potential.
+         The founding story of this endeavor is a testament to the fusion of education, experience, and enthusiasm. Driven by the desire to create something meaningful,
+          I embarked on a journey to leverage my MERN stack expertise. This project aims not only to showcase my proficiency but also to contribute value to the tech community. It reflects the culmination of my academic endeavors and practical experiences, symbolizing the passion that fuels innovation.
+          Join me on this exciting venture as we explore the boundless possibilities that lie at the intersection of technology and creativity.
          </p>
 
       </div>
       {/* founding Story right box */}
       <div>
-        <img src={FoundingStory} alt='foundingstoryimg' className="shadow-[0_0_20px_0] shadow-[#FC6767] w-[80%] "/>
+        <img src={FoundingStory} alt='foundingstoryimg' className="shadow-[0_0_20px_0] shadow-[#FC6767] w-[80%]  rounded-full"/>
       </div>
 
     </div>
-    
+
+    {/* experience stats */}
+    <Stats/>
+
     {/* vision and mission div */}
     <div className="flex flex-col items-center lg:gap-10 lg:flex-row justify-between">
+
+    
 
         {/* left box */}
         <div className="my-24 flex lg:w-[40%] flex-col gap-10">
           <h1 className="bg-gradient-to-b from-[#FF512F] to-[#F09819] bg-clip-text text-4xl font-semibold text-transparent lg:w-[70%] ">
-              Our Vision
+               Future Scope
           </h1>
 
           <p className="text-base font-medium text-richblack-300 lg:w-[95%]">With this vision in mind, we set out on a journey to create an e-learning platform that would revolutionize the way people learn. 
@@ -101,7 +104,7 @@ const About = () => {
         {/* right box */}
         <div className="my-24 flex lg:w-[40%] flex-col gap-10">
               <h1 className="bg-gradient-to-b from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB] text-transparent bg-clip-text text-4xl font-semibold lg:w-[70%] ">
-                  Our Mission
+                   Aim
               </h1>
 
               <p className="text-base font-medium text-richblack-300 lg:w-[95%]">
@@ -118,7 +121,7 @@ const About = () => {
 </section>
 
         {/* section 4 */}
-        <Stats/>
+     
 
         {/* section 5 */}
           <section className="mx-auto mt-20 flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-white">
@@ -128,9 +131,9 @@ const About = () => {
 
               <div className="relative mx-auto my-20 flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 bg-richblack-900 text-white">
         {/* Reviws from Other Learner */}
-        <h1 className="text-center text-4xl font-semibold mt-8">
+        {/* <h1 className="text-center text-4xl font-semibold mt-8">
           Reviews from other learners
-        </h1>
+        </h1> */}
         {/* <ReviewSlider /> */}
       </div>
 

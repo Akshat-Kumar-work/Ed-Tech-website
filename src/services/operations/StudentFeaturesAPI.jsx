@@ -65,7 +65,7 @@ export async function buyCourse(token , courses , userDetails,navigate,dispatch)
             currency: orderResponse.data.message.currency,
             amount: `${orderResponse.data.message.amount}`,
             order_id: orderResponse.data.message.id,
-            name:"StudyNotion",
+            name:"CodeUp",
             description:"Thank You for Purchasing the course",
             image:rzpLogo,
             prefill:{
