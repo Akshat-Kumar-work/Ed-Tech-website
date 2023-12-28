@@ -86,7 +86,7 @@ const Home = () => {
 
       <div className=' flex flex-row gap-5 mt-[95px] mb-[95px]  '>
 
-      <div className=' text-4xl font-semibold w-[45%]'>
+      {/* <div className=' text-4xl font-semibold w-[45%]'>
          <HighlighText text={"Be a Change"}></HighlighText>
       </div>
 
@@ -94,7 +94,7 @@ const Home = () => {
         <div className=' text-[16px]'> 
         </div>
         <CTAButton active={true} linkto={"/signup"}><div>Learn Now</div></CTAButton>
-      </div>
+      </div> */}
 
       </div>
 

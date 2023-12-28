@@ -56,6 +56,7 @@ exports.capturePayment = async (req,res)=>{
         }
         catch(err){
             console.log(err);
+            console.log("yaha fatra hai")
             return res.status(500).json({
                 success:false,
                 message:err.message
@@ -82,6 +83,7 @@ exports.capturePayment = async (req,res)=>{
     }
     catch(err){
         console.log(err);
+        console.log("yaha hai server error")
        return res.status(500).json({
             success:false,
             message:"could not initiate order"
