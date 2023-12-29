@@ -4,6 +4,7 @@ const User = require("../models/user")
 const { convertSecondsToDuration } = require("../utils/convertSecondsToDuration");
 const CourseProgress = require("../models/courseProgress");
 const Course = require("../models/course")
+const Review = require("../models/ratingAndReview");
 
 //update profile
 exports.updateProfile = async (req ,res)=>{
@@ -61,11 +62,16 @@ exports.deleteAccount = async (req , res)=>{
                 message:"user not found"
             })
         }
+          //delete student review
+          if(req.user.accountType === "student"){
+            await Review.findByIdAndDelete({user:ID})
+          }
         //delete profile 
         await Profile.findByIdAndDelete({_id:user.additionalDetails})
         //delete user
         await User.findByIdAndDelete({_id:ID})
-        //delete student from enrolled count also
+      
+      
 
         //return response
         return res.status(200).json({

@@ -57,8 +57,9 @@ export async function buyCourse(token , courses , userDetails,navigate,dispatch)
             throw new Error(orderResponse.data.message);
          }
 
-         console.log("payment order response",orderResponse)
+         console.log("payment order response......",orderResponse)
 
+         //opening razorpay sdk
         //options
          const options={
             key: process.env.RAZORPAY_KEY,
@@ -123,6 +124,8 @@ async function verifyPayment(bodyData,token , navigate,dispatch){
         const response = await apiConnector('POST',COURSE_VERIFY_API,bodyData,{
             Authorization:`Bearer ${token}`
         })
+
+        console.log("verify payment response from backend " , response)
 
         if(!response.data.success){
             throw new Error(response.data.message);
