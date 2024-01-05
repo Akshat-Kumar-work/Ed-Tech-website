@@ -11,6 +11,7 @@ const CourseProgress = require("../models/courseProgress");
 
 
 
+
 //code for multiple item payment
 
 //to initiate order or create order
@@ -72,7 +73,7 @@ exports.capturePayment = async (req,res)=>{
         receipt:Math.random(Date.now()).toString()
     }
 
-    //creating orders for course
+    //creating orders for course using razorpay instance 
     try{
         const paymentResponse = await instance.orders.create(options);
         res.status(200).json({
@@ -97,8 +98,9 @@ exports.capturePayment = async (req,res)=>{
 //payment verification
 //jo razor pay se signature aya hai aur jo signature hmare pass hai vo same hai toh successfull payment hai
 exports.verifyPayment = async(req,res)=>{
+    console.log("Inside payment verification controller")
     console.log(req.body)
-    //fetchind details from req
+    //fetching details from req 
     const razorpay_order_id = req.body?.razorpay_order_id;
     const razorpay_payment_id = req.body?.razorpay_payment_id;
     const razorpay_signature = req.body?.razorpay_signature;

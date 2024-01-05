@@ -8,6 +8,12 @@ import {resetCart} from "../../slices/cartSlice"
 
 const {COURSE_PAYMENT_API, COURSE_VERIFY_API , SEND_PAYMENT_SUCCESS_EMAIL_API}= studentEndpoints;
 
+
+
+
+
+
+
 //function to load external script on runtime
 function loadScript(src) {
     return new Promise((resolve) => {
@@ -32,6 +38,9 @@ function loadScript(src) {
         document.body.appendChild(script);
     });
 }
+
+
+
 
 
 //order initiate handler
@@ -66,7 +75,7 @@ export async function buyCourse(token , courses , userDetails,navigate,dispatch)
             currency: orderResponse.data.message.currency,
             amount: `${orderResponse.data.message.amount}`,
             order_id: orderResponse.data.message.id,
-            name:"CodeUp",
+            name:"Study Notion",
             description:"Thank You for Purchasing the course",
             image:rzpLogo,
             prefill:{
