@@ -17,6 +17,14 @@ const {passwordUpdated} = require("../mail/templates/passwordUpdate");
     //fetch email from request body
     const {email} = req.body;
 
+      // Check for valid email format
+      if (!email.includes('@')) {
+        return res.status(403).json({
+            success: false,
+            message: "Invalid email format"
+        });
+    }
+
     //check user exist or not
     const isUserPresent = await user.findOne({email});
 
@@ -73,17 +81,24 @@ const {passwordUpdated} = require("../mail/templates/passwordUpdate");
 //to sign up for new user
 exports.signUp = async (req ,res)=>{
     try{
-
+  
         //fetch data from request body
         const { firstName , lastName , email , password , confirmPassword , accountType
         , contactNumber , otp} = req.body;
+
+        
         //validation
         if(!firstName || !lastName || !email || !password || !confirmPassword || !otp){
+            
             return res.status(403).json({
                 success:false,
                 message:"all field are required"
             })
         }
+       
+
+        
+
         //password and confirm password ko match check karo match kar rhe hai ya nai
         if(password !== confirmPassword){
             return res.status(400).json({
@@ -141,6 +156,7 @@ exports.signUp = async (req ,res)=>{
             additionalDetails:profileDetails._id , img:`https://api.dicebear.com/5.x/initials/svg?seed=${firstName}${lastName}`
         })
 
+        console.log("type of email",typeof(email));
     return res.status(200).json({
             success:true,
             message:"sign up successfully",
