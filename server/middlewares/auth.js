@@ -5,6 +5,7 @@ require("dotenv").config();
 //authentication handler
 exports.auth = async(req , res , next)=>{
     try{
+        console.log("token from cookie inside middleware",req.cookies.token)
         //fetching token
         const token = req.cookies.token || req.header("Authorization").replace("Bearer ","");
     
