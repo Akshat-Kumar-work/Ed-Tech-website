@@ -44,7 +44,7 @@ const CourseDetails = () => {
     setIsActive(
       !isActive.includes(id)
         ? isActive.concat([id])
-        : isActive.filter((e) => e != id)
+        : isActive.filter((e) => e !== id)
     )
   }
   
@@ -138,6 +138,7 @@ const CourseDetails = () => {
       studentsEnrolled,
       createdAt
     }=courseData?.courseDetails;
+    console.log(course_id)
 
     if (paymentLoading) {
       // console.log("payment loading")

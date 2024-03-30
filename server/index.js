@@ -24,7 +24,7 @@ app.use(fileUpload({
     tempFileDir:"/tmp"
 }))
 //frontend connection
-app.use( cors({origin: "*" , credentials:true}));
+app.use( cors({origin: "http://localhost:3000" , credentials:true}));
 
 //cloudinary connection
 cloudinary.clodudinaryConnect();

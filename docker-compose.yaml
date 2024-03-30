@@ -1,1 +1,19 @@
 version: '3.8'
+services:
+          backend:
+                build: server
+                container_name: edtechbackend
+                ports:
+                   - "4000:4000"
+                env_file:
+                   - server/.env
+          frontend:
+                  build:
+                    context: .
+                  container_name: edtechfrontend
+                  ports:
+                    - "3000:3000"
+                  depends_on:
+                    - backend
+                  env_file:
+                    - .env                    

@@ -4,7 +4,6 @@ import {FaArrowRight} from "react-icons/fa"
 import HighlighText  from "../components/core/HomePage/HighlightText"
 import CTAButton from '../components/core/HomePage/Button';
 import Banner from "../assets/Images/banner.mp4"
-import CodeBlocks from '../components/core/HomePage/CodeBlocks';
 import Footer from '../components/common/footer';
 import LearningLanguageSection from '../components/core/HomePage/LearningLanguageSection';
 import TimelineSection from '../components/core/HomePage/TimelineSection';

@@ -12,7 +12,7 @@ import { FaStar } from "react-icons/fa"
 // Import required modules
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { Autoplay,FreeMode, Pagination ,slidesPerView}  from 'swiper/modules'
+import { Autoplay,FreeMode, Pagination }  from 'swiper/modules'
 
 // Get apiFunction and the endpoint
 import { apiConnector } from "../../services/apiConnector"

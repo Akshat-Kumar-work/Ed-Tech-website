@@ -53,7 +53,7 @@ const Navbar = () => {
     <div className="flex  w-11/12 max-w-maxContent items-center justify-between">
 
             <Link to="/">
-              <img src={logo} width={160} height={42} className='lg:block hidden'/>
+              <img src={logo} width={160} height={42} className='lg:block hidden' alt='logo'/>
             </Link>
 
             <nav>

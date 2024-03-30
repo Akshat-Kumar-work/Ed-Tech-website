@@ -1,6 +1,5 @@
 import React from 'react';
 import * as Icons from "react-icons/vsc";
-import { useDispatch } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 import { matchPath } from 'react-router-dom';
 
@@ -9,7 +8,6 @@ const SidebarLinks = ({link , iconName}) => {
     //agar icon ka name present hai toh aese hum icon ko fetch kar skty hai
     const Icon = Icons[iconName];
     const location = useLocation();
-    const dispatch = useDispatch();
 
     //function to match route by comparing the passed route and a current location route path
     const matchRoute = (route)=>{

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import {Table, Tbody, Thead , Th , Td ,Tr} from 'react-super-responsive-table';
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css"
 import { COURSE_STATUS } from '../../../../utils/constants';
@@ -68,7 +68,7 @@ export default function CoursesTable ({courses , setCourses}){
                                                 <Tr key={course._id} className="flex  gap-x-10 border-b border-richblack-800 px-6 py-8">
 
                                                         <Td className="flex flex-1 gap-x-4">
-                                                                <img src={course?.thumbnail} className="h-[148px] w-[220px] rounded-lg object-cover"/>
+                                                                <img src={course?.thumbnail} className="h-[148px] w-[220px] rounded-lg object-cover" alt='thumbnail'/>
                                                                 <div className="flex flex-col justify-between">
                                                                         <p className="text-lg font-semibold text-richblack-5">{course.courseName}</p>
                                                                         <p className="text-xs text-richblack-300">{course.courseDescription}</p>
