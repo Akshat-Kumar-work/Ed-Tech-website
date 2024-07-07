@@ -27,7 +27,7 @@
    
         //creating url 
         //generate link for frontend , using 3000 because frontend is on port number 3000
-        const url = `http://localhost:3000/update-password/${token}`
+        const url = `https://code-up-akshat-kumar-work.vercel.app/update-password/${token}`
     
         //send mail containing url
         await mailSender(email , "Password reset link" , `click to reset password ${url}` )
